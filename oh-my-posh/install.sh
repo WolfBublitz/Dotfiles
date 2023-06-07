@@ -21,6 +21,6 @@ fi
 
 cp theme.omp.json $OMP_THEMES_DIR
 
-echo eval "$($OMP_DIR/oh-my-posh init bash --config $OMP_THEMES_DIR/theme.omp.json))" >> ~/.bashrc
+echo eval "$($OMP_DIR/oh-my-posh init bash --config $OMP_THEMES_DIR/theme.omp.json)" >> ~/.bashrc
 
 cd ..
