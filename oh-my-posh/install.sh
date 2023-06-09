@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "installing oh my posh"
+echo "Installing Oh My Posh"
 
 cd oh-my-posh
 
