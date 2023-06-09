@@ -2,7 +2,7 @@ Install-Module -Name PSReadLine -AllowClobber -Force;
 
 $profileDirPath = [System.IO.Path]::GetDirectoryName($PROFILE)
 
-if (!(Test-Item -Path $PROFILE)) {
+if (!(Test-Path -Path $PROFILE)) {
     New-Item -Path $PROFILE -ItemType File
 }
 

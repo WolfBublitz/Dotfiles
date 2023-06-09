@@ -2,22 +2,21 @@
 
 echo "Installing Oh My Posh"
 
-cd oh-my-posh
-
 # installing oh my posh
-curl -s https://ohmyposh.dev/install.sh | bash -s -- -d /usr/bin
+curl -s https://ohmyposh.dev/install.sh | bash -s
 
 # copying theme
-cp theme.omp.json ~/theme.omp.json
+mkdir -p ~/.poshthemes
+cp theme.omp.json ~/.poshthemes/theme.omp.json
 
 if [ -x "$(command -v bash)" ]; then
-    echo "Installing Oh My Posh for Bash"
     ./install-bash.sh
 fi
 
 if [ -x "$(command -v pwsh)" ]; then
-    echo "Installing Oh My Posh for Pwsh"
-    pwsh install-pwsh.ps1  
+    pwsh install-pwsh.ps1
 fi
 
-cd ..
+if [ -x "$(command -v zsh)" ]; then
+    ./install-zsh.sh
+fi

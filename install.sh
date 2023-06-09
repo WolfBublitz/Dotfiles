@@ -1,3 +1,9 @@
 #!/bin/bash
-oh-my-posh/install.sh
-psreadline/install.sh
+
+cd oh-my-posh
+./install.sh
+cd ..
+
+cd psreadline
+./install.sh
+cd ..
