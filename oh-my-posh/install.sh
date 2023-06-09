@@ -21,9 +21,14 @@ fi
 
 cp theme.omp.json $OMP_THEMES_DIR
 
-echo eval "$($OMP_DIR/oh-my-posh init bash --config $OMP_THEMES_DIR/theme.omp.json)" >> ~/.bashrc
+if [ -x "$(command -v base)" ]; then
+    echo "Installing Oh My Posh for Bash"
+    echo eval "$($OMP_DIR/oh-my-posh init bash --config $OMP_THEMES_DIR/theme.omp.json)" >> ~/.bashrc
+fi
 
-mkdir -p ~/.config/powershell
-echo "$OMP_DIR/oh-my-posh init pwsh --config $OMP_THEMES_DIR/theme.omp.json | Invoke-Expression" >> ~/.config/powershell/Microsoft.PowerShell_profile.ps1
+if [ -x "$(command -v pwsh)" ]; then
+    echo "Installing Oh My Posh for Pwsh"
+    pwsh install-pwsh.ps1  
+fi
 
 cd ..
