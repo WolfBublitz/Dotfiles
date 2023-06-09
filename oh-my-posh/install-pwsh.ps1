@@ -1,4 +1,4 @@
-if ($true -ne Test-Path $PROFILE) {
+if (!(Test-Path $PROFILE)) {
   New-Item -Path $PROFILE -Force
 }
 
