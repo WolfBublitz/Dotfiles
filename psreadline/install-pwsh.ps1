@@ -8,4 +8,4 @@ if (!(Test-Item -Path $PROFILE)) {
 
 Copy-Item -Path "$PSScriptRoot/psreadline-setup.ps1" -Destination $profileDirPath -Force
 
-Add-Content -Path $PROFILE -Value ". `"$PSSCRIPTROOT/psreadline-setup.ps1`""
+Add-Content -Path $PROFILE -Value ". `"`$PSSCRIPTROOT/psreadline-setup.ps1`""
