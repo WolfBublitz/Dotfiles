@@ -12,7 +12,7 @@ cp theme.omp.json ~/theme.omp.json
 
 if [ -x "$(command -v bash)" ]; then
     echo "Installing Oh My Posh for Bash"
-    echo eval "$(oh-my-posh init bash --config ~/theme.omp.json)" >> ~/.bashrc
+    ./install-bash.sh
 fi
 
 if [ -x "$(command -v pwsh)" ]; then
