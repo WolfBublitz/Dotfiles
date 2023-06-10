@@ -1,4 +1,4 @@
-Write-Host "Installing Oh My Posh for Powershell"
+Write-Host "Installing Oh My Posh for Powershell" -ForegroundColor Green
 
 if (Test-Path $PROFILE) {
   Write-Host "-> Backing up $PROFILE to $PROFILE.bak"
