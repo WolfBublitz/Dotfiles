@@ -19,8 +19,9 @@ function GetDirPath() {
 $dirPath = GetDirPath
 if (!(Test-Path $dirPath)) {
     Write-Host "-> Creating $dirPath"
-    New-Item -Path $dirPath -ItemType Directory
+    $null = New-Item -Path $dirPath -ItemType Directory
 }
+
 Write-Host "-> copying theme"
 $sourceFile = [System.IO.Path]::Combine($PSScriptRoot, "theme.omp.json")
 $destinationFile = [System.IO.Path]::Combine($dirPath, "theme.omp.json")
