@@ -30,4 +30,3 @@ Copy-Item $sourceFile -Destination $destinationFile -Force
 # installing fonts
 Write-Host "-> installing font FiraCode"
 oh-my-posh font install FiraCode
-
