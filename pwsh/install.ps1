@@ -9,7 +9,7 @@ if (Test-Path $PROFILE) {
 }
 else {
   Write-Host "-> Creating directory $profileDirPath"
-  New-Item -Path $profileDirPath -ItemType Directory -Force
+  $null = New-Item -Path $profileDirPath -ItemType Directory -Force
 }
 
 Write-Host "-> Creating file $PROFILE"
