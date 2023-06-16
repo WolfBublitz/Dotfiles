@@ -1,4 +1,6 @@
-if ($host.Name -eq 'ConsoleHost' -or $host.Name -eq 'Visual Studio Code Host' ) {
+$hostname = $(Get-Host).Name
+
+if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
     Set-PSReadLineKeyHandler -Key Alt+Shift+B `
         -BriefDescription BuildDotnetProject `
         -LongDescription "Build the dotnet project in the current directory" `

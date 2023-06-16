@@ -16,8 +16,9 @@ Write-Host "-> Creating file $PROFILE"
 $null = New-Item -Path $PROFILE -ItemType File -Force
 
 $ohMyPosh = @"
-if ($host.Name -eq 'ConsoleHost' -or $host.Name -eq 'Visual Studio Code Host' ) {
-  "oh-my-posh init pwsh --config ~/.poshthemes/theme.omp.json | Invoke-Expression"
+`$hostname = (Get-Host).Name
+if (`$hostname -eq 'ConsoleHost' -or `$hostname -eq 'Visual Studio Code Host' ) {
+  oh-my-posh init pwsh --config ~/.poshthemes/theme.omp.json | Invoke-Expression
 }
 "@
 

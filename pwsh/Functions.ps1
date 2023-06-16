@@ -2,7 +2,9 @@ using namespace System;
 using namespace System.IO;
 using namespace System.Globalization;
 
-if ($host.Name -eq 'ConsoleHost' -or $host.Name -eq 'Visual Studio Code Host' ) {
+$hostname = $(Get-Host).Name
+
+if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
     function Update-Dotfiles {
         Write-Host "Updating Dotfiles" -ForegroundColor Green
 
