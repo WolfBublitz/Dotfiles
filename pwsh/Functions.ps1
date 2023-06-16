@@ -6,6 +6,10 @@ $hostname = $(Get-Host).Name
 
 if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
     function Update-Dotfiles {
+        param(
+            [Parameter(Mandatory = $false)] [bool] $Force = $false
+        )
+
         Write-Host "Updating Dotfiles" -ForegroundColor Green
 
         $tempDirPath = Join-Path ([System.IO.Path]::GetTempPath()) ([System.IO.Path]::GetRandomFileName())
@@ -39,7 +43,7 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
             Write-Host "-> Local version: not found"
         }
 
-        if (($null -eq $lastUpdate) -or ($lastUpdate -lt $repositoryDateTime)) {
+        if ($Force -or ($null -eq $lastUpdate) -or ($lastUpdate -lt $repositoryDateTime)) {
             $scriptFilePath = [Path]::Combine($tempDirPath, "Dotfiles", "install.ps1")
 
             if ($IsLinux -or $IsMacOS) {
