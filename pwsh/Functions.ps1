@@ -52,7 +52,7 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
             [File]::WriteAllText($timestampFile, $(@{ "LastUpdate" = $repositoryDateTime.ToString($timestampFormat) } | ConvertTo-Json))
         }
         else {
-            Write-Host "Everything is up to date!"
+            Write-Host "-> Everything is up to date!"
         }
     }
 }
