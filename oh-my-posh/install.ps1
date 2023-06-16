@@ -1,7 +1,7 @@
 Write-Host "Installing Oh My Posh" -ForegroundColor Green
 
 # installing oh my posh
-sudo curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/usr/bin
+sudo curl -s https://ohmyposh.dev/install.sh | bash -s
 
 # copying theme
 function GetDirPath() {
@@ -29,4 +29,4 @@ Copy-Item $sourceFile -Destination $destinationFile -Force
 
 # installing fonts
 Write-Host "-> installing font FiraCode"
-oh-my-posh font install FiraCode
+/usr/local/bin/oh-my-posh font install FiraCode
