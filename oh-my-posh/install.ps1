@@ -11,7 +11,12 @@ if ($IsWindows) {
 # installing oh my posh
 Write-Host "-> Installing Oh My Posh to $Path"
 
-curl -s https://ohmyposh.dev/install.sh | bash -s sudo -- -d $Path
+if ($IsLinux) {
+    curl -s https://ohmyposh.dev/install.sh | bash -s sudo -- -d $Path
+}
+elseif ($IsMacOS) {
+    brew install oh-my-posh
+}
 
 # copying theme
 function GetDirPath() {
