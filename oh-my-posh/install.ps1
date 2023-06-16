@@ -1,7 +1,17 @@
+param(
+    [string]$Path
+)
+
 Write-Host "Installing Oh My Posh" -ForegroundColor Green
 
+if ($IsWindows) {
+    throw "Windows is currently not supported!"
+}
+
+Write-Host "-> Installation path $Path"
+
 # installing oh my posh
-sudo curl -s https://ohmyposh.dev/install.sh | bash -s
+sudo curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $Path
 
 # copying theme
 function GetDirPath() {
@@ -29,4 +39,4 @@ Copy-Item $sourceFile -Destination $destinationFile -Force
 
 # installing fonts
 Write-Host "-> installing font FiraCode"
-/usr/local/bin/oh-my-posh font install FiraCode
+oh-my-posh font install FiraCode
