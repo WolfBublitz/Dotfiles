@@ -1,9 +1,5 @@
 using namespace System.IO
 
-param(
-  [string]$Path
-)
-
 Write-Host "Installing Oh My Posh for Powershell" -ForegroundColor Green
 
 $profileDirPath = [System.IO.Path]::GetDirectoryName($PROFILE)

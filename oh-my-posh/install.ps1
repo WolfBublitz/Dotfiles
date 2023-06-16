@@ -1,7 +1,3 @@
-param(
-    [string]$Path
-)
-
 Write-Host "Installing Oh My Posh" -ForegroundColor Green
 
 if ($IsWindows) {

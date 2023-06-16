@@ -1,8 +1,3 @@
-param(
-    [string]$Path
-)
-
-
 Write-Host "Installing Oh My Posh for Bash" -ForegroundColor Green
 
 $dirPath = $env:HOME
@@ -21,4 +16,4 @@ $null = New-Item -Path $filePath -ItemType File
 $themeFilePath = [System.IO.Path]::Combine($env:HOME, ".poshthemes", "theme.omp.json")
 
 Write-Host "-> Enabling Oh My Posh"
-Add-Content -Path $filePath -Value "eval `"`$($Path/oh-my-posh init bash --config $themeFilePath)`""
+Add-Content -Path $filePath -Value "eval `"`$(oh-my-posh init bash --config $themeFilePath)`""
