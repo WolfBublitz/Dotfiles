@@ -15,7 +15,13 @@ else {
 Write-Host "-> Creating file $PROFILE"
 $null = New-Item -Path $PROFILE -ItemType File -Force
 
-Add-Content -Path $PROFILE -Value "oh-my-posh init pwsh --config ~/.poshthemes/theme.omp.json | Invoke-Expression"
+$ohMyPosh = @"
+if ($host.Name -eq 'ConsoleHost' -or $host.Name -eq 'Visual Studio Code Host' ) {
+  "oh-my-posh init pwsh --config ~/.poshthemes/theme.omp.json | Invoke-Expression"
+}
+"@
+
+Add-Content -Path $PROFILE -Value $ohMyPosh
 
 Write-Host "-> Installing PSReadline"
 Install-Module -Name PSReadLine -AllowClobber -Force;
