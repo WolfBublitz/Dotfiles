@@ -24,7 +24,7 @@ $null = New-Item -Path $PROFILE -ItemType File -Force
 $ohMyPosh = @"
 `$hostname = (Get-Host).Name
 if (`$hostname -eq 'ConsoleHost' -or `$hostname -eq 'Visual Studio Code Host' ) {
-  $Path/oh-my-posh init pwsh --config ~/.poshthemes/theme.omp.json | Invoke-Expression
+  oh-my-posh init pwsh --config ~/.poshthemes/theme.omp.json | Invoke-Expression
 }
 "@
 
