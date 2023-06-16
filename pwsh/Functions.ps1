@@ -7,7 +7,7 @@ $hostname = $(Get-Host).Name
 if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
     function Update-Dotfiles {
         param(
-            [Parameter(Mandatory = $false)] [bool] $Force = $false
+            [switch]$Force
         )
 
         Write-Host "Updating Dotfiles" -ForegroundColor Green
