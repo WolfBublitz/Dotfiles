@@ -38,7 +38,7 @@ $files = @(
 foreach ($file in $files) {
   $sourceFilePath = [Path]::Combine($PSScriptRoot, $file)
 
-  Write-Host "-> Copying $sourceFilePath to $profileDirPath"
+  Write-Host "-> Copying $(New-Text $sourceFilePath -fg "Yellow") to $(New-Text $profileDirPath -fg "Yellow")"
   Copy-Item -Path "$PSScriptRoot/$file" -Destination $profileDirPath -Force
   Add-Content -Path $PROFILE -Value ". `"`$PSSCRIPTROOT/$file`""
 }

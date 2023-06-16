@@ -3,9 +3,11 @@ Write-Host "Creating Visual Studio Code configuration"
 function GetPath() {
     if ($IsLinux) {
         return "$env:HOME/.config/Code/User"
-    } elseif ($IsMacOS) {
+    }
+    elseif ($IsMacOS) {
         return "$env:HOME/Library/Application\ Support/Code/User/"
-    } elseif ($IsWindows) {
+    }
+    elseif ($IsWindows) {
         return "$env:APPDATA/Code/User"
     }
 }
@@ -24,5 +26,5 @@ if (Test-Path $filePath) {
     Copy-Item -Path "$path/settings.json" -Destination "$dirPath/settings.json.bak" -Force
 }
 
-Write-Host "-> Copying settings.json to $filePath"
+Write-Host "-> Copying settings.json to $(New-Text $filePath -fg "Yellow"))"
 Copy-Item -Path "$PSSCRIPTROOT/settings.json" -Destination $filePath -Force

@@ -31,7 +31,7 @@ if (!(Test-Path $dirPath)) {
 $sourceFile = [System.IO.Path]::Combine($PSScriptRoot, "theme.omp.json")
 $destinationFile = [System.IO.Path]::Combine($dirPath, "theme.omp.json")
 
-Write-Host "-> Copying $sourceFile to $destinationFile"
+Write-Host "-> Copying $(New-Text $sourceFile -fg "Yellow") to $(New-Text $destinationFile -fg "Yellow" )"
 
 Copy-Item $sourceFile -Destination $destinationFile -Force
 

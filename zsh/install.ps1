@@ -5,7 +5,7 @@ $filePath = [System.IO.Path]::Combine($dirPath, ".zshrc")
 $backupFilePath = [System.IO.Path]::Combine($dirPath, ".zshrc.bak")
 
 if (Test-Path $filePath) {
-    Write-Host "-> Backing up $filePath to $backupFilePath"
+    Write-Host "-> Backing up $(New-Text $filePath -fg "Yellow") to $(New-Text $backupFilePath -fg "Yellow")"
     Copy-Item -Path $filePath -Destination $backupFilePath -Force
     Remove-Item -Path $filePath -Force
 }

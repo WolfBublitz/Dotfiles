@@ -1,4 +1,4 @@
-$ohMyPoshPath = "/usr/bin"
+Install-Module Pansies -AllowClobber -Force
 
 Push-Location oh-my-posh
 ./install.ps1
