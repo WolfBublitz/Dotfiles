@@ -32,9 +32,11 @@ if (!(Test-Path $dirPath)) {
     $null = New-Item -Path $dirPath -ItemType Directory
 }
 
-Write-Host "-> copying theme"
 $sourceFile = [System.IO.Path]::Combine($PSScriptRoot, "theme.omp.json")
 $destinationFile = [System.IO.Path]::Combine($dirPath, "theme.omp.json")
+
+Write-Host "-> Copying $sourceFile to $destinationFile"
+
 Copy-Item $sourceFile -Destination $destinationFile -Force
 
 # installing fonts
