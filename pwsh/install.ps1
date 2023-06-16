@@ -1,3 +1,5 @@
+using namespace System.IO
+
 Write-Host "Installing Oh My Posh for Powershell" -ForegroundColor Green
 
 $profileDirPath = [System.IO.Path]::GetDirectoryName($PROFILE)
@@ -34,7 +36,9 @@ $files = @(
 )
 
 foreach ($file in $files) {
-  Write-Host "-> Copying $file"
+  $sourceFilePath = [Path]::Combine($PSScriptRoot, $file)
+
+  Write-Host "-> Copying $sourceFilePath to $profileDirPath"
   Copy-Item -Path "$PSScriptRoot/$file" -Destination $profileDirPath -Force
   Add-Content -Path $PROFILE -Value ". `"`$PSSCRIPTROOT/$file`""
 }
