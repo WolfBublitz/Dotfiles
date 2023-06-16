@@ -17,11 +17,17 @@ $null = New-Item -Path $PROFILE -ItemType File -Force
 
 Add-Content -Path $PROFILE -Value "oh-my-posh init pwsh --config ~/.poshthemes/theme.omp.json | Invoke-Expression"
 
-Write-Host "-> Installing PSReadLine"
+Write-Host "-> Installing PSReadline"
 Install-Module -Name PSReadLine -AllowClobber -Force;
 
-Copy-Item -Path "$PSScriptRoot/psreadline-setup.ps1" -Destination $profileDirPath -Force
+$files = @(
+  "Functions.ps1",
+  "PSReadlineSetup.ps1",
+  "Shortcuts.ps1"
+)
 
-Add-Content -Path $PROFILE -Value ". `"`$PSSCRIPTROOT/Functions.ps1`""
-Add-Content -Path $PROFILE -Value ". `"`$PSSCRIPTROOT/PSReadlineSetup.ps1`""
-Add-Content -Path $PROFILE -Value ". `"`$PSSCRIPTROOT/Shortcuts.ps1`""
+foreach ($file in $files) {
+  Write-Host "-> Copying $file"
+  Copy-Item -Path "$PSScriptRoot/$file" -Destination $profileDirPath -Force
+  Add-Content -Path $PROFILE -Value ". `"`$PSSCRIPTROOT/$file`""
+}
