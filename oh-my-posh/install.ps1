@@ -11,7 +11,7 @@ if ($IsWindows) {
 Write-Host "-> Installation path $Path"
 
 # installing oh my posh
-sudo curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $Path
+curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $Path
 
 # copying theme
 function GetDirPath() {
