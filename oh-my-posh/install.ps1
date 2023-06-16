@@ -8,10 +8,10 @@ if ($IsWindows) {
     throw "Windows is currently not supported!"
 }
 
-Write-Host "-> Installation path $Path"
-
 # installing oh my posh
-curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $Path
+Write-Host "-> Installing Oh My Posh to $Path"
+
+curl -s https://ohmyposh.dev/install.sh | bash -s sudo -- -d $Path
 
 # copying theme
 function GetDirPath() {
