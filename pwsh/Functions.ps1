@@ -46,12 +46,7 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
         if ($Force -or ($null -eq $lastUpdate) -or ($lastUpdate -lt $repositoryDateTime)) {
             $scriptFilePath = [Path]::Combine($tempDirPath, "Dotfiles", "install.ps1")
 
-            if ($IsLinux -or $IsMacOS) {
-                sudo pwsh -C $scriptFilePath
-            }
-            else {
-                pwsh -C  $scriptFilePath
-            }
+            pwsh -C  $scriptFilePath
 
             [File]::WriteAllText($timestampFile, $(@{ "LastUpdate" = $repositoryDateTime.ToString($timestampFormat) } | ConvertTo-Json))
         }

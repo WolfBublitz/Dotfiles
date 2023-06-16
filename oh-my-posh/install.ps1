@@ -1,7 +1,7 @@
 Write-Host "Installing Oh My Posh" -ForegroundColor Green
 
 # installing oh my posh
-curl -s https://ohmyposh.dev/install.sh | bash -s
+sudo curl -s https://ohmyposh.dev/install.sh | bash -s
 
 # copying theme
 function GetDirPath() {
