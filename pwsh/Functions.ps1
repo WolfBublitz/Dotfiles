@@ -10,8 +10,6 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
             [switch]$Force
         )
 
-        Write-Host $(id)
-
         Write-Host "Updating Dotfiles" -ForegroundColor Green
 
         $tempDirPath = Join-Path ([System.IO.Path]::GetTempPath()) ([System.IO.Path]::GetRandomFileName())
