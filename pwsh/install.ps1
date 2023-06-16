@@ -22,5 +22,6 @@ Install-Module -Name PSReadLine -AllowClobber -Force;
 
 Copy-Item -Path "$PSScriptRoot/psreadline-setup.ps1" -Destination $profileDirPath -Force
 
+Add-Content -Path $PROFILE -Value ". `"`$PSSCRIPTROOT/Functions.ps1`""
 Add-Content -Path $PROFILE -Value ". `"`$PSSCRIPTROOT/PSReadlineSetup.ps1`""
 Add-Content -Path $PROFILE -Value ". `"`$PSSCRIPTROOT/Shortcuts.ps1`""
