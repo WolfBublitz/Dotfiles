@@ -18,23 +18,23 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
     Set-PSReadLineKeyHandler -Key Alt+RightArrow -Function ShellForwardWord
 
     Set-PSReadlineOption -Color @{
-        "Command"                = '#AAFF00'
-        "Comment"                = '#00FFFF'
+        "Command"                = $PSStyle.Foreground.FromRgb(0x0595f5)
+        "Comment"                = $PSStyle.Foreground.White
         "ContinuationPrompt"     = '#7FFFD4'
         "Default"                = '#50C878'
-        "Emphasis"               = '#C4B454'
+        "Emphasis"               = $PSStyle.Foreground.Black
         "Error"                  = '#7DF9FF'
         "InlinePrediction"       = '#00A36C'
         "Keyword"                = '#32CD32'
         "ListPrediction"         = '#0FFF50'
-        "ListPredictionSelected" = '#CC5500'
+        "ListPredictionSelected" = $PSStyle.Reverse
         "Member"                 = '#40E0D0'
-        "Number"                 = '#C9CC3F'
-        "Operator"               = '#93C572'
-        "Parameter"              = '#00FF7F'
-        "Selection"              = '#FF5F1F'
-        "String"                 = '#40B5AD'
+        "Number"                 = $PSStyle.Foreground.FromRgb(0x0595f5)
+        "Operator"               = $PSStyle.Foreground.White
+        "Parameter"              = $PSStyle.Foreground.BrightWhite
+        #"Selection"              = $PSStyle.Reverse
+        "String"                 = $PSStyle.Foreground.BrightYellow
         "Type"                   = '#C1E1C1'
-        "Variable"               = '#0BDA51'
+        "Variable"               = $PSStyle.Foreground.Green
     }
 }
