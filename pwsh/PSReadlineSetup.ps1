@@ -32,7 +32,7 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
         "Number"                 = $PSStyle.Foreground.FromRgb(0x0595f5)
         "Operator"               = $PSStyle.Foreground.White
         "Parameter"              = $PSStyle.Foreground.BrightWhite
-        #"Selection"              = $PSStyle.Reverse
+        "Selection"              = $PSStyle.Reverse
         "String"                 = $PSStyle.Foreground.BrightYellow
         "Type"                   = '#C1E1C1'
         "Variable"               = $PSStyle.Foreground.Green
