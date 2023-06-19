@@ -18,7 +18,7 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
     Set-PSReadLineKeyHandler -Key Alt+RightArrow -Function ShellForwardWord
 
     Set-PSReadlineOption -Color @{
-        "Command"                = $PSStyle.Foreground.FromRgb(0x0595f5)
+        "Command"                = $PSStyle.Bold + $PSStyle.Foreground.FromRgb(0x0595f5)
         "Comment"                = $PSStyle.Foreground.White
         "ContinuationPrompt"     = '#7FFFD4'
         "Default"                = '#50C878'
