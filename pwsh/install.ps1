@@ -29,6 +29,9 @@ Add-Content -Path $PROFILE -Value $ohMyPosh
 Write-Host "-> Installing PSReadline"
 Install-Module -Name PSReadLine -AllowClobber -Force;
 
+Write-Host "-> Installing CompletionPredictor"
+Install-Module -Name CompletionPredictor -Force
+
 $files = @(
   "Functions.ps1",
   "PSReadlineSetup.ps1",
