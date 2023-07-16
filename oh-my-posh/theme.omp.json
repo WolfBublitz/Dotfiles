@@ -28,9 +28,6 @@
           },
           "style": "diamond",
           "template": "{{ if .WSL }}WSL at {{ end }} {{ .Icon }} ",
-          "background_templates": [
-            "{{ if .Root }}#FF0000{{ end }}"
-          ],
           "type": "os",
           "leading_diamond": "╭─\ue0b6"
         },
