@@ -37,7 +37,10 @@
           "powerline_symbol": "",
           "properties": {
             "mapped_shell_names": {
-              "pwsh": "PS"
+              "bash": "󱆃",
+              "cmd": "",
+              "fish": "󰈺",
+              "pwsh": "󰨊"
             }
           },
           "style": "powerline",
