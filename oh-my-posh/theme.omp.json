@@ -58,11 +58,28 @@
             "type": "time"
           },
           {
-            "background": "#ffeb3b",
             "background_templates": [
-              "{{if eq \"Charging\" .State.String}}#40c4ff{{end}}",
-              "{{if eq \"Discharging\" .State.String}}#ff5722{{end}}",
-              "{{if eq \"Full\" .State.String}}#4caf50{{end}}"
+              "{{if ge .Percentage 0}}#e2886c{{end}}",
+              "{{if ge .Percentage 5}}#e5926b{{end}}",
+              "{{if ge .Percentage 10}}#e79a69{{end}}",
+              "{{if ge .Percentage 15}}#e9a268{{end}}",
+              "{{if ge .Percentage 20}}#ecac67{{end}}",
+              "{{if ge .Percentage 25}}#e6ad61{{end}}",
+              "{{if ge .Percentage 30}}#e9b861{{end}}",
+              "{{if ge .Percentage 35}}#f3c563{{end}}",
+              "{{if ge .Percentage 40}}#f5ce62{{end}}",
+              "{{if ge .Percentage 45}}#e2c965{{end}}",
+              "{{if ge .Percentage 50}}#d4c86a{{end}}",
+              "{{if ge .Percentage 55}}#c4c56d{{end}}",
+              "{{if ge .Percentage 60}}#d4c86a{{end}}",
+              "{{if ge .Percentage 65}}#c4c56d{{end}}",
+              "{{if ge .Percentage 70}}#b0be6e{{end}}",
+              "{{if ge .Percentage 75}}#a4c073{{end}}",
+              "{{if ge .Percentage 80}}#94bd77{{end}}",
+              "{{if ge .Percentage 85}}#84bb7b{{end}}",
+              "{{if ge .Percentage 90}}#73b87e{{end}}",
+              "{{if ge .Percentage 95}}#63b682{{end}}",
+              "{{if ge .Percentage 100}}#57bb8a{{end}}"
             ],
             "foreground": "#193549",
             "powerline_symbol": "",
