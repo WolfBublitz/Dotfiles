@@ -51,10 +51,10 @@
           "background": "#4e00c4",
           "foreground": "#FFFFFF",
           "properties": {
-            "time_format": "15:04:05"
+            "time_format": "15:04"
           },
           "style": "diamond",
-          "template": " {{ .CurrentDate | date .Format }} ",
+          "template": " 󰥔 {{ .CurrentDate | date .Format }} ",
           "type": "time"
         },
         {
