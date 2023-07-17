@@ -145,7 +145,7 @@
           "background": "#2f2f2f",
           "foreground": "#FFFFFF",
           "style": "diamond",
-          "template": " {{ if .Unsupported }}{{ else }}{{ .Full }}{{ end }}<#7a7a7a> </>",
+          "template": " 󰪮 {{ if .Unsupported }}{{ else }}{{ .Major}}.{{ .Minor }}{{ end }}<#7a7a7a> </>",
           "tips": [
             "dotnet"
           ],
