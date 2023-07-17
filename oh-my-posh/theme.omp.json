@@ -29,7 +29,7 @@
           "style": "diamond",
           "template": "{{ if .WSL }}WSL at {{ end }} {{ .Icon }} ",
           "type": "os",
-          "leading_diamond": "╭─\ue0b6"
+          "leading_diamond": "╭─"
         },
         {
           "background": "#0077c2",
@@ -46,16 +46,6 @@
           "style": "powerline",
           "template": " {{ .Name }} ",
           "type": "shell"
-        },
-        {
-          "background": "#4e00c4",
-          "foreground": "#FFFFFF",
-          "properties": {
-            "time_format": "15:04"
-          },
-          "style": "diamond",
-          "template": " 󰥔 {{ .CurrentDate | date .Format }} ",
-          "type": "time"
         },
         {
           "style": "powerline",
@@ -128,36 +118,11 @@
         },
         {
           "background": "#2f2f2f",
-          "foreground": "#ffeb3b",
-          "foreground_templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) }}#ffeb3b{{ end }}",
-            "{{ if gt .Ahead 0 }}#8A4FFF{{ end }}",
-            "{{ if gt .Behind 0 }}#2EC4B6{{ end }}"
-          ],
-          "properties": {
-            "fetch_status": true
-          },
-          "style": "diamond",
-          "template": "  {{ .HEAD }} {{ .BranchStatus }}{{ if .Working.Changed }}  <#E84855>{{ .Working.String }}</>{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }}  <#2FDA4E>{{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0}}  {{ .StashCount }}{{ end }}{{ if gt .WorktreeCount 0}}  {{ .WorktreeCount }}{{ end }}<#7a7a7a> </>",
-          "type": "git"
-        },
-        {
-          "background": "#2f2f2f",
-          "foreground": "#FFFFFF",
-          "style": "diamond",
-          "template": " 󰪮 {{ if .Unsupported }}{{ else }}{{ .Major}}.{{ .Minor }}{{ end }}<#7a7a7a> </>",
-          "tips": [
-            "dotnet"
-          ],
-          "type": "dotnet"
-        },
-        {
-          "background": "#2f2f2f",
           "foreground": "#fafafa",
           "properties": {
             "folder_icon": "<#B5B2C2> </>",
             "folder_separator_icon": "<#B5B2C2> </>",
-            "home_icon": "",
+            "home_icon": " ",
             "style": "agnoster_short"
           },
           "style": "diamond",
@@ -167,6 +132,59 @@
         }
       ],
       "type": "prompt"
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "style": "diamond",
+          "leading_diamond": "",
+          "background": "#4e00c4",
+          "foreground": "#FFFFFF",
+          "properties": {
+            "time_format": "15:04"
+          },
+          "template": " 󰥔 {{ .CurrentDate | date .Format }} ",
+          "type": "time"
+        },
+        {
+          "style": "diamond",
+          "leading_diamond": "<#f14e32,parentBackground>",
+          "background": "#f14e32",
+          "foreground": "#ffffff",
+          "foreground_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#ffffff{{ end }}",
+            "{{ if gt .Ahead 0 }}#8A4FFF{{ end }}",
+            "{{ if gt .Behind 0 }}#2EC4B6{{ end }}"
+          ],
+          "properties": {
+            "fetch_status": true
+          },
+          "template": "  {{ .HEAD }} {{ .BranchStatus }}{{ if .Working.Changed }}  <#ffffff>{{ .Working.String }}</>{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }}  <#000000>{{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0}}  {{ .StashCount }}{{ end }}{{ if gt .WorktreeCount 0}}  {{ .WorktreeCount }}{{ end }} </>",
+          "type": "git"
+        },
+        {
+          "style": "diamond",
+          "leading_diamond": "<#2f2f2f,parentBackground>",
+          "foreground": "#FFFFFF",
+          "background": "#2f2f2f",
+          "template": " 󰪮 {{ if .Unsupported }}{{ else }}{{ .Major}}.{{ .Minor }}{{ end }} </>",
+          "tips": [
+            "dotnet"
+          ],
+          "type": "dotnet"
+        },
+        {
+          "type": "project",
+          "style": "diamond",
+          "leading_diamond": "<#ffeb3b,parentBackground>",
+          "powerline_symbol": "",
+          "foreground": "#193549",
+          "background": "#ffeb3b",
+          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Version }} {{.Version}}{{ end }} {{ if .Name }}{{ .Name }}{{ end }}{{ end }} "
+        }
+      ]
     },
     {
       "alignment": "left",
