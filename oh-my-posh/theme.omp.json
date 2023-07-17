@@ -58,7 +58,7 @@
           "type": "time"
         },
         {
-          "style": "diamond",
+          "style": "powerline",
           "background_templates": [
             "{{if ge .Percentage 0}}#FF0000{{end}}",
             "{{if ge .Percentage 3}}#FF1100{{end}}",
