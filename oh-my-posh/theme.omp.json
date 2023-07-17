@@ -182,7 +182,7 @@
           "powerline_symbol": "",
           "foreground": "#193549",
           "background": "#ffeb3b",
-          "template": " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Version }} {{.Version}}{{ end }} {{ if .Name }}{{ .Name }}{{ end }}{{ end }} "
+          "template": "{{ if .Env.PATH_TO_LOCAL_PROJECTS }}  {{ else }}   {{ end }}"
         }
       ]
     },
