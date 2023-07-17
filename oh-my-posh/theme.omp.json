@@ -126,8 +126,8 @@
             "style": "agnoster_short"
           },
           "style": "diamond",
-          "template": "<#f2f200>  </>{{ .Path }} ",
-          "trailing_diamond": "",
+          "template": "<#f2f200>  </>{{ .Path }}",
+          "trailing_diamond": "",
           "type": "path"
         }
       ],
@@ -145,7 +145,7 @@
           "properties": {
             "time_format": "15:04"
           },
-          "template": " 󰥔 {{ .CurrentDate | date .Format }} ",
+          "template": "󰥔 {{ .CurrentDate | date .Format }} ",
           "type": "time"
         },
         {
