@@ -174,11 +174,11 @@
         {
           "type": "project",
           "style": "diamond",
-          "leading_diamond": "<#ffeb3b,parentBackground>",
+          "leading_diamond": "<#915700,parentBackground>",
           "powerline_symbol": "",
           "foreground": "#193549",
-          "background": "#ffeb3b",
-          "template": "asd{{ if .Env.PATH_TO_LOCAL_PROJECTS }}  {{ else }}   {{ end }}"
+          "background": "#915700",
+          "template": "{{ if .Env.PATH_TO_LOCAL_PROJECTS }}{{ else }} {{ end }} "
         }
       ]
     },
