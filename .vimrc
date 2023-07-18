@@ -2,7 +2,6 @@ syntax enable       " enable syntax processing
 
 set tabstop=4       " number of visual spaces per TAB
 
-# UI
 set number          " show line numbers
 set showcmd         " show command in bottom bar
 set cursorline      " highlight current line
