@@ -8,4 +8,4 @@ function dotfiles {
 
 dotfiles config --local status.showUntrackedFiles no
 
-dotfiles checkout --track origin/master --force
+dotfiles checkout --force
