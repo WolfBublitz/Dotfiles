@@ -197,7 +197,7 @@
             "user_color": "#00a611"
           },
           "style": "diamond",
-          "template": "{{ if .SSHSession }}󱊪 {{ end }}<#00a611>{{.UserName}}</> <#ff0000></> <#00a9fc>{{.HostName}}</>",
+          "template": "{{ if .SSHSession }}󱊪 {{ end }}<#00a611>{{ if .Root }}root{{ else }}{{.UserName}}{{ end }}</> <#ff0000></> <#00a9fc>{{.HostName}}</>",
           "type": "session",
           "leading_diamond": "<#2f2f2f>╰─</>"
         },
