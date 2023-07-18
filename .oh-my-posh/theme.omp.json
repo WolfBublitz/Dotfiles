@@ -140,7 +140,7 @@
         {
           "style": "diamond",
           "leading_diamond": "",
-          "background": "#4e00c4",
+          "background": "#0077c2",
           "foreground": "#FFFFFF",
           "properties": {
             "time_format": "15:04"
@@ -178,7 +178,7 @@
           "powerline_symbol": "",
           "foreground": "#193549",
           "background": "#ffeb3b",
-          "template": "{{ if .Env.PATH_TO_LOCAL_PROJECTS }}  {{ else }}   {{ end }}"
+          "template": "asd{{ if .Env.PATH_TO_LOCAL_PROJECTS }}  {{ else }}   {{ end }}"
         }
       ]
     },
