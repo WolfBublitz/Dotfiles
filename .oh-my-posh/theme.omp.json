@@ -174,10 +174,10 @@
         {
           "type": "project",
           "style": "diamond",
-          "leading_diamond": "<#915700,parentBackground>",
+          "leading_diamond": "<#007c30,parentBackground>",
           "powerline_symbol": "",
           "foreground": "#193549",
-          "background": "#915700",
+          "background": "#007c30",
           "template": "{{ if .Env.PATH_TO_LOCAL_PROJECTS }}{{ else }} {{ end }} "
         }
       ]
