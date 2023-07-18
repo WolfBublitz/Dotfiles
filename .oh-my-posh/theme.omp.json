@@ -162,9 +162,9 @@
         },
         {
           "style": "diamond",
-          "leading_diamond": "<#2f2f2f,parentBackground>",
+          "leading_diamond": "<#201155,parentBackground>",
           "foreground": "#ffffff",
-          "background": "#2f2f2f",
+          "background": "#201155",
           "template": " 󰪮 {{ if .Unsupported }}{{ else }}{{ .Major}}.{{ .Minor }}{{ end }} </>",
           "tips": [
             "dotnet"
