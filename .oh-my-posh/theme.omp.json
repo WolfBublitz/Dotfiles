@@ -80,7 +80,7 @@
             "{{if ge .Percentage 3}}#FF1100{{end}}",
             "{{if ge .Percentage 0}}#FF0000{{end}}"
           ],
-          "foreground": "#193549",
+          "foreground": "#000000",
           "powerline_symbol": "",
           "properties": {
             "charged_icon": "󰂅 ",
