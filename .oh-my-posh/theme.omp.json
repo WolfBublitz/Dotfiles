@@ -27,7 +27,7 @@
             "wsl_separator": " on "
           },
           "style": "diamond",
-          "template": "{{ if .WSL }}WSL at {{ end }}{{ .Icon }} ",
+          "template": "{{ .Icon }}{{ if .WSL }} (WSL){{ end }} ",
           "type": "os",
           "leading_diamond": "╭─"
         },
