@@ -1,0 +1,22 @@
+[Desktop Entry]
+DefaultProfile=Wolf.profile
+
+[General]
+ConfigVersion=1
+
+[MainWindow]
+1920x1200 screen: Height=613
+1920x1200 screen: Width=1382
+1920x1200 screen: XPosition=281
+1920x1200 screen: YPosition=382
+DVI-D-0=DVI-D-0
+DVI-I-1=DVI-I-1
+RestorePositionForNextInstance=false
+State=AAAA/wAAAAD9AAAAAQAAAAAAAAAAAAAAAPwCAAAAAvsAAAAiAFEAdQBpAGMAawBDAG8AbQBtAGEAbgBkAHMARABvAGMAawAAAAAA/////wAAAXwBAAAD+wAAABwAUwBTAEgATQBhAG4AYQBnAGUAcgBEAG8AYwBrAAAAAAD/////AAABFQEAAAMAAAVmAAACNwAAAAQAAAAEAAAACAAAAAj8AAAAAQAAAAIAAAACAAAAFgBtAGEAaQBuAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAAAAAAAAAABwAcwBlAHMAcwBpAG8AbgBUAG8AbwBsAGIAYQByAQAAAUX/////AAAAAAAAAAA=
+ToolBarsMovable=Disabled
+
+[Notification Messages]
+CloseAllTabs=true
+
+[UiSettings]
+ColorScheme=
