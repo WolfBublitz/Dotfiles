@@ -7,6 +7,8 @@ DimWhenInactive=false
 InvertSelectionColors=false
 Name=Wolf
 Parent=FALLBACK/
+TerminalColumns=110
+TerminalRows=30
 
 [Terminal Features]
 BlinkingCursorEnabled=false
