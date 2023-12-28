@@ -13,3 +13,7 @@ eval "$(oh-my-posh init bash --config ~/.oh-my-posh/theme.omp.json)"
 if [ -x "$(command -v neofetch)" ]; then
   neofetch
 fi
+
+if test -f "/etc/profile.d/bash_completion.sh"; then
+  source /etc/profile.d/bash_completion.sh
+fi
