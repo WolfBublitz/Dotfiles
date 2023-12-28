@@ -1,5 +1,11 @@
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+
 if test -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh; then
   source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
