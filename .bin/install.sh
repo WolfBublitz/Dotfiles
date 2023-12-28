@@ -20,14 +20,16 @@ declare -a tools=(neofetch htop unzip vim)
 
 for tool in "${tools[@]}"
 do
-   echo "Installing " $tool
+   echo "[INFO] Checking " $tool
    if ! [ -x "$(command -v $tool)" ]; then
+      echo "[INFO] Installing " $tool
       if [ -x "$(command -v apt-get)" ]; then
          sudo -- sh -c `apt-get install -y $tool`
       fi
    fi
 done
 
-if ! [ -x "$(command -v oh-my-posh)" ]; then
+if ! [ -x "$(command -v oh-my-posh)" ]; 
+   echo "[INFO] Installing oh my posh"
    sudo -- sh -c 'curl -s https://ohmyposh.dev/install.sh | bash -s'
 fi
