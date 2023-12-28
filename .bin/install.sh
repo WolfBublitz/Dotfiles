@@ -16,7 +16,7 @@ if [ -x "$(command -v zsh)" ]; then
    git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ~/.zsh/zsh-autocomplete
 fi
 
-declare -a tools=(neofetch htop lsd unzip vim)
+declare -a tools=(btop neofetch htop lsd unzip vim)
 
 for tool in "${tools[@]}"
 do
