@@ -20,11 +20,11 @@ declare -a tools=(neofetch htop unzip vim)
 
 for tool in "${tools[@]}"
 do
-   echo "[INFO] Checking " $tool
+   echo "[INFO] Checking" $tool
    if ! [ -x "$(command -v $tool)" ]; then
       echo "[INFO] Installing " $tool
       if [ -x "$(command -v apt-get)" ]; then
-         sudo -- sh -c `apt-get install -y $tool`
+         sudo -- sh -c "apt-get install -y $tool"
       fi
    fi
 done
