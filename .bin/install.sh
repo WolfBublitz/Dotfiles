@@ -16,6 +16,17 @@ if [ -x "$(command -v zsh)" ]; then
    git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ~/.zsh/zsh-autocomplete
 fi
 
-if [ -x "$(command -v apt-get)" ]; then
-   sudo -- sh -c 'apt-get update; apt-get install -y neofetch htop vim'
+tools = (neofetch htop vim)
+
+for tool in "${tools[@]}"
+do
+  if ! [ -x "$(command -v $tool)" ]; then
+   if [ -x "$(command -v apt-get)" ]; then
+      sudo -- sh -c `apt-get install -y $tool`
+   fi
+fi
+done
+
+if ! [ -x "$(command -v oh-my-posh)" ]; then
+   sudo -- sh -c 'curl -s https://ohmyposh.dev/install.sh | bash -s'
 fi
