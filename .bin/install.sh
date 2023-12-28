@@ -17,6 +17,5 @@ if [ -x "$(command -v zsh)" ]; then
 fi
 
 if [ -x "$(command -v apt-get)" ]; then
-  apt-get update
-  apt-get install -y neofetch htop vim
+   sudo -- sh -c 'apt-get update; apt-get install -y neofetch htop vim'
 fi
