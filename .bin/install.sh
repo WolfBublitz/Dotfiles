@@ -31,5 +31,5 @@ done
 
 if ! [ -x "$(command -v oh-my-posh)" ]; 
    echo "[INFO] Installing oh my posh"
-   sudo -- sh -c 'curl -s https://ohmyposh.dev/install.sh | bash -s'
+   sudo -- sh -c "curl -s https://ohmyposh.dev/install.sh | bash -s"
 fi
