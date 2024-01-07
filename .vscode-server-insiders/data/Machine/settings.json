@@ -25,5 +25,8 @@
 		"**/.git/subtree-cache/**": true,
 		"**/bin/**": true,
 		"**/obj/**": true,
+	},
+	"powershell.powerShellAdditionalExePaths": {
+		"local": "/home/wolf/powershell/pwsh"
 	}
 }

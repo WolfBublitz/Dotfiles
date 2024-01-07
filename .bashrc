@@ -8,12 +8,15 @@ if [ -x "$(command -v lsd)" ]; then
   alias lt='ls --tree'
 fi
 
-eval "$(oh-my-posh init bash --config ~/.oh-my-posh/theme.omp.json)"
+if ! [ -z "$PS1" ]; then
 
-if [ -x "$(command -v neofetch)" ]; then
-  neofetch
+	eval "$(oh-my-posh init bash --config ~/.oh-my-posh/theme.omp.json)"
+
+	if [ -x "$(command -v neofetch)" ]; then
+  		neofetch
+	fi
 fi
 
 if test -f "/etc/profile.d/bash_completion.sh"; then
-  source /etc/profile.d/bash_completion.sh
+	source /etc/profile.d/bash_completion.sh
 fi
