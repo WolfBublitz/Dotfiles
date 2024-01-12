@@ -23,11 +23,15 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
   # ┌──────────────────────────────────────────────────────────────────────┐
   # │ Shortcuts                                                            │
   # └──────────────────────────────────────────────────────────────────────┘
+
+  # shortcut: dotfiles
+  # git command for dotfiles
   Function dotfiles {
     git --git-dir=$HOME/.dotfiles --work-tree=$HOME @args
   }
 
-  # l shortcut to list files
+  # shortcut: l
+  # lists files and directories
   if (Test-CommandExists lsd) {
     # use lsd if available
     Set-Alias -Name l -Value lsd
@@ -37,7 +41,9 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
     Set-Alias -Name l -Value ls
   }
 
-  function Open-InFileBrowser {
+  # shortcut: o
+  # opens current directory in explorer
+  function o {
     Invoke-Item .
   }
 
@@ -45,15 +51,21 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
     & $profile
   }
 
+  # shortcut: Get-Weather
+  # shows the weather
+  function Get-Weather {
+    Invoke-RestMethod -Uri "de.wttr.in"
+  }
+
+  # shortcuts for going to parent directories
   function cd.. { Set-Location -Path .. }
-
   function cd... { Set-Location -Path ..\.. }
-
   function cd.... { Set-Location -Path ..\..\.. }
-
   function cd..... { Set-Location -Path ..\..\..\.. }
 
-  function list {
+  # shortcut: Show-Files
+  # shows a (filtered) list of files in the current directory
+  function Show-Files {
     if ($args.Count -gt 0) {
       Get-ChildItem -Recurse -Include "$args" | Foreach-Object FullName
     }
