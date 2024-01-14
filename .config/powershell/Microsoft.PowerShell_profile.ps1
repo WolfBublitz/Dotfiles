@@ -183,6 +183,48 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
   }
 
   # ┌──────────────────────────────────────────────────────────────────────┐
+  # │ Extensions                                                           │
+  # └──────────────────────────────────────────────────────────────────────┘
+
+  foreach ($file in Get-ChildItem -Path $PSScriptRoot) {
+    if ($file.Name.EndsWith(".Extension.ps1")) {
+      . $file.FullName
+    }
+  }
+
+  Function New-Extension {
+    Param (
+      [Parameter(Mandatory = $true)][string]$Name
+    )
+
+    $extensionPath = Join-Path -Path $PSScriptRoot -ChildPath "$Name.Extension.ps1"
+
+    if (Test-Path -Path $extensionPath) {
+      Write-Host "Extension $Name already exists" -ForegroundColor Red
+    }
+    else {
+      New-Item -Path $extensionPath -ItemType File
+
+      Invoke-Item $extensionPath
+    }
+  }
+
+  Function Edit-Extension {
+    Param (
+      [Parameter(Mandatory = $true)][string]$Name
+    )
+
+    $extensionPath = Join-Path -Path $PSScriptRoot -ChildPath "$Name.Extension.ps1"
+
+    if (Test-Path -Path $extensionPath) {
+      Invoke-Item $extensionPath
+    }
+    else {
+      Write-Host "Extension $Name does not exist" -ForegroundColor Red
+    }
+  }
+
+  # ┌──────────────────────────────────────────────────────────────────────┐
   # │ Prompt                                                               │
   # └──────────────────────────────────────────────────────────────────────┘
 
