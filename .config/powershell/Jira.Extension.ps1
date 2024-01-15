@@ -1,3 +1,7 @@
+# ┌──────────────────────────────────────────────────────────────────────┐
+# │ Settings                                                             │
+# └──────────────────────────────────────────────────────────────────────┘
+
 Function Read-JiraSettings {
     $configDirectory = [System.IO.Path]::GetDirectoryName($PSScriptRoot)
 
@@ -53,6 +57,10 @@ Function Write-JiraSettings {
     $settings | ConvertTo-Json | Out-File -FilePath $jiraSettingsPath
 }
 
+# ┌──────────────────────────────────────────────────────────────────────┐
+# │ Base Functions                                                       │
+# └──────────────────────────────────────────────────────────────────────┘
+
 Function Invoke-JiraGetMethod {
     param(
         [Parameter(Mandatory = $true)][string]$Method
@@ -79,6 +87,38 @@ Function Invoke-JiraGetMethod {
     return Invoke-RestMethod @parameters
 }
 
+Function Invoke-JiraPostMethod {
+    param(
+        [Parameter(Mandatory = $true)][string]$Method,
+        [Parameter(Mandatory = $true)][string]$Body
+    )
+
+    $settings = Read-JiraSettings
+
+    if ($settings.Token) {
+        $headers = @{ Authorization = "Bearer $($settings.Token)" }
+    }
+    else {
+        $headers = @{ }
+    }
+
+    $uri = "$($settings.RestUri)/$Method"
+
+    $parameters = @{
+        Uri                  = $uri
+        Headers              = $headers
+        Method               = "Post"
+        SkipCertificateCheck = $settings.SkipCertificateCheck
+        Body                 = $Body
+    }
+
+    return Invoke-RestMethod @parameters
+}
+
+# ┌──────────────────────────────────────────────────────────────────────┐
+# │ Issues                                                               │
+# └──────────────────────────────────────────────────────────────────────┘
+
 Function Get-JiraIssue {
     param(
         [Parameter(Mandatory = $true)][string]$IssueKey
@@ -86,6 +126,93 @@ Function Get-JiraIssue {
 
     return Invoke-JiraGetMethod -Method "issue/$IssueKey"
 }
+
+Function New-JiraIssue {
+    param(
+        [Parameter(Mandatory = $true)][string]$ProjectKey,
+        [Parameter(Mandatory = $true)][string]$Summary,
+        [Parameter(Mandatory = $false)][string]$Description,
+        [Parameter(Mandatory = $false)][string]$IssueType,
+        [Parameter(Mandatory = $false)][string]$Priority = "Medium",
+        [Parameter(Mandatory = $false)][string]$Assignee,
+        [Parameter(Mandatory = $false)][string]$Reporter,
+        [Parameter(Mandatory = $false)][string[]]$Components,
+        [Parameter(Mandatory = $false)][string[]]$Labels,
+        [Parameter(Mandatory = $false)][string]$EpicLink,
+        [Parameter(Mandatory = $false)][string]$FixVersion
+    )
+
+    $body = @{
+        fields = @{
+            project = @{
+                key = $ProjectKey
+            }
+            summary = $Summary
+        }
+    }
+
+    if ($Description) {
+        $body.fields.description = $Description
+    }
+
+    if ($IssueType) {
+        $body.fields.issuetype = @{
+            name = $IssueType
+        }
+    }
+
+    if ($Priority) {
+        $body.fields.priority = @{
+            name = $Priority
+        }
+    }
+
+    if ($Assignee) {
+        $body.fields.assignee = @{
+            name = $Assignee
+        }
+    }
+
+    if ($Reporter) {
+        $body.fields.reporter = @{
+            name = $Reporter
+        }
+    }
+
+    if ($Components) {
+        $body.fields.components = @(
+            $Components | ForEach-Object {
+                @{
+                    id = $_
+                }
+            }
+        )
+    }
+
+    if ($Labels) {
+        $body.fields.labels = $Labels
+    }
+
+    if ($EpicLink) {
+        $body.fields.customfield_10008 = $EpicLink
+    }
+
+    if ($FixVersion) {
+        $body.fields.fixVersions = @(
+            @{
+                name = $FixVersion
+            }
+        )
+    }
+
+    $body = $body | ConvertTo-Json
+
+    return Invoke-JiraPostMethod -Method "issue" -Body $body
+}
+
+# ┌──────────────────────────────────────────────────────────────────────┐
+# │ Components                                                           │
+# └──────────────────────────────────────────────────────────────────────┘
 
 Function Get-JiraComponents {
     param(
