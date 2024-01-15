@@ -73,6 +73,7 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
+                "experimental.retroTerminalEffect": false,
                 "font": 
                 {
                     "face": "FiraCode Nerd Font",

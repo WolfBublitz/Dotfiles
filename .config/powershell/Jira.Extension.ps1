@@ -110,6 +110,7 @@ Function Invoke-JiraPostMethod {
         Method               = "Post"
         SkipCertificateCheck = $settings.SkipCertificateCheck
         Body                 = $Body
+        ContentType          = "application/json"
     }
 
     return Invoke-RestMethod @parameters
@@ -127,12 +128,16 @@ Function Get-JiraIssue {
     return Invoke-JiraGetMethod -Method "issue/$IssueKey"
 }
 
+Function Get-JiraIssueTypes {
+    return Invoke-JiraGetMethod -Method "issuetype"
+}
+
 Function New-JiraIssue {
     param(
         [Parameter(Mandatory = $true)][string]$ProjectKey,
+        [Parameter(Mandatory = $true)][string]$IssueType,
         [Parameter(Mandatory = $true)][string]$Summary,
         [Parameter(Mandatory = $false)][string]$Description,
-        [Parameter(Mandatory = $false)][string]$IssueType,
         [Parameter(Mandatory = $false)][string]$Priority = "Medium",
         [Parameter(Mandatory = $false)][string]$Assignee,
         [Parameter(Mandatory = $false)][string]$Reporter,
@@ -142,12 +147,18 @@ Function New-JiraIssue {
         [Parameter(Mandatory = $false)][string]$FixVersion
     )
 
+    $availableIssueTypes = Get-JiraIssueTypes
+    $availableIssueTypes = $availableIssueTypes | Where-Object { $_.name -eq $IssueType } | Select-Object -First 1
+
     $body = @{
-        fields = @{
+        fields    = @{
             project = @{
                 key = $ProjectKey
             }
             summary = $Summary
+        }
+        issuetype = @{
+            id = $issueTypeData.id
         }
     }
 
