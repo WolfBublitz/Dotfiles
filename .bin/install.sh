@@ -15,3 +15,22 @@ if [ -x "$(command -v zsh)" ]; then
    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
    git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ~/.zsh/zsh-autocomplete
 fi
+
+declare -a tools=(btop neofetch htop lsd unzip vim)
+
+for tool in "${tools[@]}"
+do
+   echo "[INFO] Checking" $tool
+   if ! [ -x "$(command -v $tool)" ]; then
+      echo "[INFO] Installing " $tool
+      if [ -x "$(command -v apt-get)" ]; then
+         sudo -- sh -c "apt-get install -y $tool"
+      fi
+   fi
+done
+
+echo "[INFO] Checking oh my posh"
+if ! [ -x "$(command -v oh-my-posh)" ]; then
+   echo "[INFO] Installing oh my posh"
+   sudo -- sh -c "curl -s https://ohmyposh.dev/install.sh | bash -s"
+fi
