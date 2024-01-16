@@ -158,7 +158,7 @@ Function New-JiraIssue {
             summary = $Summary
         }
         issuetype = @{
-            id = $issueTypeData.id
+            id = $availableIssueTypes.id
         }
     }
 
@@ -216,7 +216,104 @@ Function New-JiraIssue {
         )
     }
 
-    $body = $body | ConvertTo-Json
+    $body = $body | ConvertTo-Json -Depth 10
+
+    return Invoke-JiraPostMethod -Method "issue" -Body $body
+}
+
+Function New-JiraSubTask {
+    param(
+        [Parameter(Mandatory = $true)][string]$ProjectKey,
+        [Parameter(Mandatory = $true)][string]$Summary,
+        [Parameter(Mandatory = $true)][string]$ParentIssueKey,
+        [Parameter(Mandatory = $false)][string]$IssueType = "Sub-task",
+        [Parameter(Mandatory = $false)][string]$Description,
+        [Parameter(Mandatory = $false)][string]$Priority = "Medium",
+        [Parameter(Mandatory = $false)][string]$Assignee,
+        [Parameter(Mandatory = $false)][string]$Reporter,
+        [Parameter(Mandatory = $false)][string[]]$Components,
+        [Parameter(Mandatory = $false)][string[]]$Labels,
+        [Parameter(Mandatory = $false)][string]$EpicLink,
+        [Parameter(Mandatory = $false)][string]$FixVersion
+    )
+
+    $availableIssueTypes = Get-JiraIssueTypes
+    $availableIssueTypes = $availableIssueTypes | Where-Object { $_.name -eq $IssueType } | Select-Object -First 1
+
+    $body = @{
+        fields    = @{
+            project = @{
+                key = $ProjectKey
+            }
+            parent  = @{
+                key = $ParentIssueKey
+            }
+            summary = $Summary
+        }
+        issuetype = @{
+            id = $availableIssueTypes.id
+        }
+    }
+
+    if ($Description) {
+        $body.fields.description = $Description
+    }
+
+    if ($IssueType) {
+        $body.fields.issuetype = @{
+            name = $IssueType
+        }
+    }
+
+    if ($Priority) {
+        $body.fields.priority = @{
+            name = $Priority
+        }
+    }
+
+    if ($Assignee) {
+        $body.fields.assignee = @{
+            name = $Assignee
+        }
+    }
+
+    if ($Reporter) {
+        $body.fields.reporter = @{
+            name = $Reporter
+        }
+    }
+
+    if ($Components) {
+        $body.fields.components = @(
+            $Components | ForEach-Object {
+                $id = Get-JiraComponent -ProjectKey $ProjectKey -Name $_ | Select-Object -ExpandProperty id
+
+                @{
+                    id = $id
+                }
+            }
+        )
+    }
+
+    if ($Labels) {
+        $body.fields.labels = $Labels
+    }
+
+    if ($EpicLink) {
+        $body.fields.customfield_10008 = $EpicLink
+    }
+
+    if ($FixVersion) {
+        $body.fields.fixVersions = @(
+            $id = Get-JiraVersion -ProjectKey $ProjectKey -Name $FixVersion | Select-Object -ExpandProperty id
+
+            @{
+                id = $id
+            }
+        )
+    }
+
+    $body = $body | ConvertTo-Json -Depth 10
 
     return Invoke-JiraPostMethod -Method "issue" -Body $body
 }
@@ -225,10 +322,53 @@ Function New-JiraIssue {
 # │ Components                                                           │
 # └──────────────────────────────────────────────────────────────────────┘
 
+Function Get-JiraComponent {
+    param(
+        [Parameter(Mandatory = $true)][string]$ProjectKey,
+        [Parameter(Mandatory = $true)][string]$Name
+    )
+
+    $components = Get-JiraComponents -ProjectKey $ProjectKey | Where-Object { $_.name -eq $Name } | Select-Object -First 1
+
+    if ($components.count -eq 0) {
+        throw "Component '$Name' not found in project '$ProjectKey'"
+    }
+
+    return $components
+}
+
 Function Get-JiraComponents {
     param(
         [Parameter(Mandatory = $true)][string]$ProjectKey
     )
 
     return Invoke-JiraGetMethod -Method "project/$ProjectKey/components"
+}
+
+# ┌──────────────────────────────────────────────────────────────────────┐
+# │ Components                                                           │
+# └──────────────────────────────────────────────────────────────────────┘
+
+Function Get-JiraVersion {
+    param(
+        [Parameter(Mandatory = $true)][string]$ProjectKey,
+        [Parameter(Mandatory = $true)][string]$Name
+    )
+
+    $versions = Get-JiraVersions -ProjectKey $ProjectKey | Where-Object { $_.name -eq $Name } | Select-Object -First 1
+
+    if ($versions.count -eq 0) {
+        throw "Version '$Name' not found in project '$ProjectKey'"
+    }
+
+    return $versions
+}
+
+
+Function Get-JiraVersions {
+    param(
+        [Parameter(Mandatory = $true)][string]$ProjectKey
+    )
+
+    return Invoke-JiraGetMethod -Method "project/$ProjectKey/versions"
 }
