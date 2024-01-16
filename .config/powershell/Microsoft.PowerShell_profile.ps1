@@ -2,6 +2,8 @@ $hostname = (Get-Host).Name
 
 if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
 
+  $OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
+
   # ┌──────────────────────────────────────────────────────────────────────┐
   # │ Commandlets                                                          │
   # └──────────────────────────────────────────────────────────────────────┘
