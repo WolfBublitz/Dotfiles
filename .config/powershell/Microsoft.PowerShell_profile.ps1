@@ -114,10 +114,8 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
     }
   }
 
-  
-
   # ┌──────────────────────────────────────────────────────────────────────┐
-  # │ Extensions                                                           │
+  # │ Loading Extensions                                                   │
   # └──────────────────────────────────────────────────────────────────────┘
 
   foreach ($file in Get-ChildItem -Path $PSScriptRoot) {
@@ -165,7 +163,7 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
     neofetch
   }
   elseif ($IsWindows -and (Test-CommandExists "winfetch")) {
-    winfetch
+    # winfetch
   }
 
   if (!(Test-CommandExists "oh-my-posh")) {
