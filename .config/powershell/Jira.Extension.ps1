@@ -147,8 +147,7 @@ Function New-JiraIssue {
         [Parameter(Mandatory = $false)][string]$FixVersion
     )
 
-    $availableIssueTypes = Get-JiraIssueTypes
-    $availableIssueTypes = $availableIssueTypes | Where-Object { $_.name -eq $IssueType } | Select-Object -First 1
+    $availableIssueTypes = (Get-JiraIssueTypes) | Where-Object { $_.name -eq $IssueType } | Select-Object -First 1
 
     $body = @{
         fields    = @{
@@ -194,7 +193,7 @@ Function New-JiraIssue {
         $body.fields.components = @(
             $Components | ForEach-Object {
                 @{
-                    id = $_
+                    id = $_.ToString()
                 }
             }
         )
@@ -237,8 +236,7 @@ Function New-JiraSubTask {
         [Parameter(Mandatory = $false)][string]$FixVersion
     )
 
-    $availableIssueTypes = Get-JiraIssueTypes
-    $availableIssueTypes = $availableIssueTypes | Where-Object { $_.name -eq $IssueType } | Select-Object -First 1
+    $availableIssueTypes = (Get-JiraIssueTypes) | Where-Object { $_.name -eq $IssueType } | Select-Object -First 1
 
     $body = @{
         fields    = @{
@@ -286,10 +284,9 @@ Function New-JiraSubTask {
     if ($Components) {
         $body.fields.components = @(
             $Components | ForEach-Object {
-                $id = Get-JiraComponent -ProjectKey $ProjectKey -Name $_ | Select-Object -ExpandProperty id
-
+                $component = Get-JiraComponent -ProjectKey $ProjectKey -Name $_
                 @{
-                    id = $id
+                    id = $component.id
                 }
             }
         )
@@ -305,10 +302,10 @@ Function New-JiraSubTask {
 
     if ($FixVersion) {
         $body.fields.fixVersions = @(
-            $id = Get-JiraVersion -ProjectKey $ProjectKey -Name $FixVersion | Select-Object -ExpandProperty id
+            $version = Get-JiraVersion -ProjectKey $ProjectKey -Name $FixVersion
 
             @{
-                id = $id
+                id = $version.id
             }
         )
     }
@@ -328,7 +325,7 @@ Function Get-JiraComponent {
         [Parameter(Mandatory = $true)][string]$Name
     )
 
-    $components = Get-JiraComponents -ProjectKey $ProjectKey | Where-Object { $_.name -eq $Name } | Select-Object -First 1
+    $components = (Get-JiraComponents -ProjectKey $ProjectKey) | Where-Object { $_.name -eq $Name } | Select-Object -First 1
 
     if ($components.count -eq 0) {
         throw "Component '$Name' not found in project '$ProjectKey'"
