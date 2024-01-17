@@ -15,5 +15,6 @@ Function Update-OhMyPosh {
         brew upgrade oh-my-posh
     }
     elseif ($IsLinux) {
+        curl -s https://ohmyposh.dev/install.sh | sudo bash -s
     }
 }
