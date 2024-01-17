@@ -3,7 +3,6 @@
 # └──────────────────────────────────────────────────────────────────────┘
 
 Add-Module PSReadLine
-Add-Module CompletionPredictor
 
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -PredictionViewStyle ListView
