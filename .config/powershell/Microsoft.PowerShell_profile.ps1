@@ -207,6 +207,10 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
     winfetch
   }
 
+  if (!(Test-CommandExists "oh-my-posh")) {
+    Install-OhMyPosh
+  }
+
   oh-my-posh init pwsh --config ~/.oh-my-posh/theme.omp.json | Invoke-Expression
 }
 
