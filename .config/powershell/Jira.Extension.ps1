@@ -143,7 +143,7 @@ Function New-JiraIssue {
         [Parameter(Mandatory = $false)][string]$Reporter,
         [Parameter(Mandatory = $false)][string[]]$Components,
         [Parameter(Mandatory = $false)][string[]]$Labels,
-        [Parameter(Mandatory = $false)][string]$EpicLink,
+        [Parameter(Mandatory = $false)][string]$EpicKey,
         [Parameter(Mandatory = $false)][string]$FixVersion
     )
 
@@ -192,8 +192,9 @@ Function New-JiraIssue {
     if ($Components) {
         $body.fields.components = @(
             $Components | ForEach-Object {
+                $component = Get-JiraComponent -ProjectKey $ProjectKey -Name $_
                 @{
-                    id = $_.ToString()
+                    id = $component.id
                 }
             }
         )
@@ -203,8 +204,8 @@ Function New-JiraIssue {
         $body.fields.labels = $Labels
     }
 
-    if ($EpicLink) {
-        $body.fields.customfield_10008 = $EpicLink
+    if ($EpicKey) {
+        $body.fields.customfield_10000 = $EpicKey
     }
 
     if ($FixVersion) {

@@ -10,17 +10,22 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
   # │ Commandlets                                                          │
   # └──────────────────────────────────────────────────────────────────────┘
   Function Test-CommandExists {
-    Param ($command)
+    param(
+      [Parameter(Mandatory = $true)][string]$Name
+    )
 
-    $oldPreference = $ErrorActionPreference
+    $oldErrorActionPreference = $ErrorActionPreference
 
-    $ErrorActionPreference = ‘stop’
+    $ErrorActionPreference = "stop"
 
     try {
-      if (Get-Command $command) { RETURN $true }
+      if (Get-Command -Name $Name) { return $true }
     }
-    Finally {
-      $ErrorActionPreference = $oldPreference
+    catch {
+      return $false
+    }
+    finally {
+      $ErrorActionPreference = $oldErrorActionPreference
     }
   }
 
@@ -195,10 +200,11 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
   # ┌──────────────────────────────────────────────────────────────────────┐
   # │ Prompt                                                               │
   # └──────────────────────────────────────────────────────────────────────┘
-  if (($IsMacOS -or $IsLinux) -and (Test-CommandExists neofetch)) {
+  if (($IsMacOS -or $IsLinux) -and (Test-CommandExists "neofetch")) {
     neofetch
   }
-  elseif ($IsWindows) {
+  elseif ($IsWindows -and (Test-CommandExists "winfetch")) {
+    winfetch
   }
 
   oh-my-posh init pwsh --config ~/.oh-my-posh/theme.omp.json | Invoke-Expression
