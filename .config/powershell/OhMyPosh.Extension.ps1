@@ -1,16 +1,21 @@
-Add-Module PwshSpectreConsole 
+# Add-Module PwshSpectreConsole 
 
 Function Install-OhMyPosh {
+    Write-Info "Installing [blue]Oh My Posh[/]"
+
     if ($IsWindows) {
         Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))
     }
     elseif ($IsMacOS) {
         brew install oh-my-posh
     }
+
+    Write-Success "[green][[SUCC]][/] Installed [blue]Oh My Posh[/]"
 }
 
 Function Update-OhMyPosh {
-    Write-SpectreHost "Updating [blue]Oh My Posh[/]"
+    Write-Info "Updating [blue]Oh My Posh[/]"
+
     if ($IsWindows) {
         Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))
     }
@@ -21,5 +26,5 @@ Function Update-OhMyPosh {
         curl -s https://ohmyposh.dev/install.sh | sudo bash -s
     }
 
-    Write-SpectreHost "[green][[SUCC]][/] updated [blue]Oh My Posh[/]"
+    Write-Success "[green][[SUCC]][/] Updated [blue]Oh My Posh[/]"
 }

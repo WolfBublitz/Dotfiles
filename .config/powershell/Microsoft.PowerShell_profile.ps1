@@ -120,7 +120,10 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
 
   foreach ($file in Get-ChildItem -Path $PSScriptRoot) {
     if ($file.Name.EndsWith(".Extension.ps1")) {
-      . $file.FullName
+      echo $file.Name
+      Measure-Command {
+        . $file.FullName
+      }
     }
   }
 

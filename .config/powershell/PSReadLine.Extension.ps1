@@ -2,7 +2,7 @@
 # │ PSReadLine                                                           │
 # └──────────────────────────────────────────────────────────────────────┘
 
-Add-Module PSReadLine
+# Add-Module PSReadLine
 
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -PredictionViewStyle ListView

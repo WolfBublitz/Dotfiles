@@ -1,4 +1,4 @@
-Add-Module PwshSpectreConsole 
+# Import-Module PwshSpectreConsole 
 
 <#
     .SYNOPSIS
