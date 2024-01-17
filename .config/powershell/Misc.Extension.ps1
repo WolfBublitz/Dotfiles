@@ -8,7 +8,6 @@ using namespace System
     Get the number of months since marriage.
 #>
 Function Get-MonthsSinceMarriage {
-
     $marriageDate = [DateTime]::new(2016, 3, 11)
 
     $currentDate = Get-Date
