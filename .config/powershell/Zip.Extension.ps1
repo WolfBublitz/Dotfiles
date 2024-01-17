@@ -20,7 +20,7 @@ function Compress-Zip {
         [Parameter(Mandatory = $false)][string]$DestinationPath = $null,
         [Parameter(Mandatory = $false)][string]$CompressionLevel = "Fastest")
 
-    if ($DestinationPath -eq $null) {
+    if ([System.String]::IsNullOrEmpty($DestinationPath)) {
         $DestinationPath = "$($Path).zip"
     }
 
