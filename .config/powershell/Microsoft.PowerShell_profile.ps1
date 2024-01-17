@@ -4,6 +4,8 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
 
   $OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
+  $env:PATH = $env:PATH + ";$HOME/.local/share/powershell/Scripts"
+
   # ┌──────────────────────────────────────────────────────────────────────┐
   # │ Commandlets                                                          │
   # └──────────────────────────────────────────────────────────────────────┘
@@ -193,6 +195,12 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
   # ┌──────────────────────────────────────────────────────────────────────┐
   # │ Prompt                                                               │
   # └──────────────────────────────────────────────────────────────────────┘
+  if (($IsMacOS -or $IsLinux) -and (Test-CommandExists neofetch)) {
+    neofetch
+  }
+  elseif ($IsWindows) {
+  }
+
   oh-my-posh init pwsh --config ~/.oh-my-posh/theme.omp.json | Invoke-Expression
 }
 
