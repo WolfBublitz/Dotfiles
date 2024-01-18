@@ -120,10 +120,7 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
 
   foreach ($file in Get-ChildItem -Path $PSScriptRoot) {
     if ($file.Name.EndsWith(".Extension.ps1")) {
-      echo $file.Name
-      Measure-Command {
-        . $file.FullName
-      }
+      . $file.FullName
     }
   }
 
@@ -160,14 +157,25 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
   }
 
   # ┌──────────────────────────────────────────────────────────────────────┐
+  # │ System Info                                                          │
+  # └──────────────────────────────────────────────────────────────────────┘
+  if (!(Test-CommandExists "fastfetch")) {
+    if ($IsMacOS) {
+      brew install fastfetch
+    }
+    elseif ($IsLinux) {
+
+    }
+    elseif ($IsWindows) {
+      scoop install fastfetch
+    }
+  }
+
+  fastfetch
+
+  # ┌──────────────────────────────────────────────────────────────────────┐
   # │ Prompt                                                               │
   # └──────────────────────────────────────────────────────────────────────┘
-  if (($IsMacOS -or $IsLinux) -and (Test-CommandExists "neofetch")) {
-    neofetch
-  }
-  elseif ($IsWindows -and (Test-CommandExists "winfetch")) {
-    # winfetch
-  }
 
   if (!(Test-CommandExists "oh-my-posh")) {
     Install-OhMyPosh
