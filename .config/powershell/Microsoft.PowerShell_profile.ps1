@@ -87,7 +87,7 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
     Invoke-Item .
   }
 
-  function Reload-Profile {
+  function Update-Profile {
     & $profile
   }
 
