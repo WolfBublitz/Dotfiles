@@ -12,8 +12,8 @@ if ! [ -z "$PS1" ]; then
 
 	eval "$(oh-my-posh init bash --config ~/.oh-my-posh/theme.omp.json)"
 
-	if [ -x "$(command -v neofetch)" ]; then
-  		neofetch
+	if [ -x "$(command -v fastfetch)" ]; then
+  		fastfetch
 	fi
 fi
 
