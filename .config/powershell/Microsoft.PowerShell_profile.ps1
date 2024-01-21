@@ -4,7 +4,11 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
 
   $OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
-  $env:PATH = $env:PATH + ":$HOME/.local/share/powershell/Scripts:/opt/homebrew/bin"
+  $env:PATH = $env:PATH + ":$HOME/.local/share/powershell/Scripts"
+
+  if ($IsMacOS) {
+    $env:PATH = $env:PATH + ":/opt/homebrew/bin"
+  }
 
   # ┌──────────────────────────────────────────────────────────────────────┐
   # │ Commandlets                                                          │
