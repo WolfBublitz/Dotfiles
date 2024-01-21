@@ -4,6 +4,10 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
 
   $OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
+  # ┌──────────────────────────────────────────────────────────────────────┐
+  # │ PATH                                                                 │
+  # └──────────────────────────────────────────────────────────────────────┘
+
   $env:PATH = $env:PATH + ":$HOME/.local/share/powershell/Scripts"
 
   if ($IsMacOS) {
