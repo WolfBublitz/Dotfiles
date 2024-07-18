@@ -4,6 +4,26 @@ function dotfiles {
     git --git-dir=$HOME/.dotfiles --work-tree=$HOME @args
 }
 
+function Test-CommandExists {
+    Param ($command)
+     
+    $oldPreference = $ErrorActionPreference
+
+    $ErrorActionPreference = ‘stop’
+
+    try {
+         if(Get-Command $command) {
+             return $true
+         }
+     catch {
+        return $false
+    }
+
+    finally {
+        $ErrorActionPreference=$oldPreference
+    }
+}
+
 dotfiles config --local status.showUntrackedFiles no
 
 dotfiles checkout --force
