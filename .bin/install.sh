@@ -32,5 +32,5 @@ done
 echo "[INFO] Checking oh my posh"
 if ! [ -x "$(command -v oh-my-posh)" ]; then
    echo "[INFO] Installing oh my posh"
-   sudo -- sh -c "curl -s https://ohmyposh.dev/install.sh | bash -s"
+   sudo -- sh -c "curl -s https://ohmyposh.dev/install.sh | bash -s -- -d /usr/loca/bin"
 fi
