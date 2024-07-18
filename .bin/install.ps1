@@ -15,7 +15,7 @@ function Test-CommandExists {
          if(Get-Command $command) {
              return $true
          }
-     catch {
+    } catch {
         return $false
     }
 
@@ -37,4 +37,10 @@ if ($IsWindows) {
 
     # referencing our $PROFILE 
     echo ". $HOME/.config/powershell/Microsoft.PowerShell_profile.ps1" >> $PROFILE
+}
+
+if (!(Test-CommandExists oh-my-posh)) {
+    if ($IsLinux) {
+        curl -s https://ohmyposh.dev/install.sh | bash -s -- -d /usr/local/bin
+    }
 }
