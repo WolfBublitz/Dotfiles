@@ -29,6 +29,12 @@ do
    fi
 done
 
+echo "[INFO] Checking fastfetch"
+if ! [ -x "$(command -v fastfetch)" ]; then
+   echo "[INFO] Installing fastfetch"
+   sudo -- sh -c "curl -sLO https://github.com/fastfetch-cli/fastfetch/releases/download/2.18.1/fastfetch-linux-amd64.deb && sudo dpkg -i fastfetch-linux-amd64.deb"
+fi
+
 echo "[INFO] Checking oh my posh"
 if ! [ -x "$(command -v oh-my-posh)" ]; then
    echo "[INFO] Installing oh my posh"
