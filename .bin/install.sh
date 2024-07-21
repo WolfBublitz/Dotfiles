@@ -16,21 +16,21 @@ if [ -x "$(command -v zsh)" ]; then
    git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ~/.zsh/zsh-autocomplete
 fi
 
-declare -a tools=(btop neofetch htop lsd unzip vim)
+declare -a tools=(fastfetch htop lsd unzip vim)
 
 for tool in "${tools[@]}"
 do
    echo "[INFO] Checking" $tool
-   if ! [ -x "$(command -v $tool)" ]; then
-      echo "[INFO] Installing " $tool
-      if [ -x "$(command -v apt-get)" ]; then
-         sudo -- sh -c "apt-get install -y $tool"
-      fi
+   if [ -x "$(command -v $tool)" ]; then
+      echo "[SUCC]" $tool " found"
+   else
+      echo "[WARN]" $tool " not found"
    fi
 done
 
 echo "[INFO] Checking oh my posh"
-if ! [ -x "$(command -v oh-my-posh)" ]; then
-   echo "[INFO] Installing oh my posh"
-   sudo -- sh -c "curl -s https://ohmyposh.dev/install.sh | bash -s"
+if [ -x "$(command -v oh-my-posh)" ]; then
+   echo "[SUCC] oh-my-posh found"
+else
+   echo "[WARN] oh-my-posh not found"
 fi

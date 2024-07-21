@@ -10,8 +10,7 @@ fi
 
 if ! [ -z "$PS1" ]; then
 
-	eval "$(oh-my-posh init bash --config ~/.oh-my-posh/theme.omp.json)"
-
+eval "$(starship init bash)"
 	if [ -x "$(command -v fastfetch)" ]; then
   		fastfetch
 	fi
@@ -20,3 +19,7 @@ fi
 if test -f "/etc/profile.d/bash_completion.sh"; then
 	source /etc/profile.d/bash_completion.sh
 fi
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/wolf/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

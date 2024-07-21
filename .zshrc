@@ -25,3 +25,7 @@ if test -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; then
 fi
 
 eval "$(oh-my-posh init zsh --config ~/.oh-my-posh/theme.omp.json)"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/wolf/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
