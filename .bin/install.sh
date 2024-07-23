@@ -1,42 +1,112 @@
 #!/bin/bash
 
-git clone --bare https://github.com/WolfBublitz/Dotfiles.git $HOME/.dotfiles
+install_dotfiles() {
+   echo -e "\u001b[7m Installing Dotfiles \u001b[0m"
+   git clone --bare https://github.com/WolfBublitz/Dotfiles.git $HOME/.dotfiles
 
-function dotfiles {
-   /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+   function dotfiles {
+      /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+   }
+
+   dotfiles config --local status.showUntrackedFiles no
+
+   dotfiles checkout --force
 }
 
-dotfiles config --local status.showUntrackedFiles no
+declare -a common_packages=(
+   bat curl git htop vim wget zsh
+)
 
-dotfiles checkout --force
+get_system_info() {
+    [ -e /etc/os-release ] && source /etc/os-release && echo "${ID:-Unknown}" && return
+    [ -e /etc/lsb-release ] && source /etc/lsb-release && echo "${DISTRIB_ID:-Unknown}" && return
+    [ "$(uname)" == "Darwin" ] && echo "mac" && return
+}
 
-if [ -x "$(command -v zsh)" ]; then
-   git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
-   git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ~/.zsh/zsh-autocomplete
-fi
+install_packages_for_arch() {
+   sudo pacman -S "${common_packages[@]}"
+}
 
-declare -a tools=(fastfetch htop lsd unzip vim)
+install_packages_for_debian() {
+   sudo apt install "${common_packages[@]}"
+}
 
-for tool in "${tools[@]}"
-do
-   echo "[INFO] Checking" $tool
-   if [ -x "$(command -v $tool)" ]; then
-      echo "[SUCC]" $tool " found"
-   else
-      echo "[WARN]" $tool " not found"
-   fi
-done
+install_packages_for_fedora() {
+   sudo dnf install "${common_packages[@]}"
+}
 
-echo "[INFO] Checking fastfetch"
-if ! [ -x "$(command -v fastfetch)" ]; then
-   echo "[INFO] Installing fastfetch"
-   sudo -- sh -c "curl -sLO https://github.com/fastfetch-cli/fastfetch/releases/download/2.18.1/fastfetch-linux-amd64.deb && sudo dpkg -i fastfetch-linux-amd64.deb"
-fi
+install_packages_for_mac() {
+   brew install "${common_packages[@]}"
+}
 
-echo "[INFO] Checking oh my posh"
-if [ -x "$(command -v oh-my-posh)" ]; then
-   echo "[SUCC] oh-my-posh found"
-else
-   echo "[WARN] oh-my-posh not found"
-fi
+install_packages_for_suse() {
+   echo "Not implemented yet!"
+}
+
+
+install_package() {
+   package_name=$1
+
+   echo -e "\033[36m  Installing $package_name...\033[0m"
+
+   case $system_info in
+      manjaro) sudo pacman -S $package_name ;;
+      arch) sudo pacman -S $package_name ;;
+      ubuntu) sudo apt-get install $package_name ;;
+      debian) sudo apt-get install $package_name ;;
+      mac) brew install $package_name ;;
+      *) echo "Unknown system!" && exit 1 ;;
+   esac
+}
+
+install_oh_my_posh() {
+   package_name="oh my posh"
+
+   echo -e "\033[36m  Installing $package_name\033[0m"
+
+   curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.bin
+}
+
+install_packages() {
+   system_info=$(get_system_info)
+   echo -e "\033[37;44m Installing packages for $system_info \033[0m"
+
+   install_package bat
+   install_package git
+   install_package htop
+   install_package vim
+   install_package wget
+   install_package zsh
+   install_oh_my_posh
+}
+
+install_everything() {
+   install_dotfiles
+   install_packages
+}
+
+show_menu() {
+   echo -e " 0 Install everything"
+   echo -e " 1 Install dotfiles"
+   echo -e " 2 Install packages"
+
+   read -r option
+   case $option in
+      "0") install_everything ;;
+      "1") install_dotfiles ;;
+      "2") install_packages ;;
+      *) exit 0 ;;
+   esac
+}
+
+main() {
+   case "$1" in
+      -a | --all | a | all) setup_everything ;;
+      -id | --install-dotfiles) install_dotfiles ;;
+      -ip | --install-packages) install_packages ;;
+      *) show_menu ;;
+   esac
+   exit 0
+}
+
+main "$@"
