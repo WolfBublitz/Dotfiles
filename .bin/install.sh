@@ -92,9 +92,9 @@ show_menu() {
 
    read -r option
    case $option in
-      "0") install_everything ;;
-      "1") install_dotfiles ;;
-      "2") install_packages ;;
+      0) install_everything ;;
+      1) install_dotfiles ;;
+      2) install_packages ;;
       *) exit 0 ;;
    esac
 }
