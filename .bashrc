@@ -15,3 +15,5 @@ if test -f "/etc/profile.d/bash_completion.sh"; then
 fi
 
 eval "$(oh-my-posh init bash --config $HOME/.oh-my-posh/theme.omp.json)"
+
+|

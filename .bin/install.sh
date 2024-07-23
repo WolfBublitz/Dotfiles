@@ -69,6 +69,26 @@ install_oh_my_posh() {
    curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.bin
 }
 
+install_powershell() {
+   package_name="PowerShell"
+
+   echo -e "\033[32;1m -> \033[34;1mInstalling $package_name\033[0m"
+
+   sudo apt-get install jq libssl1.1 libunwind8 -y
+
+   # Grab the latest tar.gz
+   bits=$(getconf LONG_BIT)
+   release=$(curl -sL https://api.github.com/repos/PowerShell/PowerShell/releases/latest)
+   package=$(echo $release | jq -r ".assets[].browser_download_url" | grep "linux-arm${bits}.tar.gz")
+   wget $package
+
+   # Make folder to put powershell
+   mkdir $HOME/.powershell
+
+   # Unpack the tar.gz file
+   tar -xvf "./${package##*/}" -C $HOME/.powershell
+}
+
 update_package_manager() {
    system_info=$(get_system_info)
 
@@ -98,6 +118,7 @@ install_packages() {
    install_package wget
    install_package zsh
    install_oh_my_posh
+   install_powershell
 }
 
 install_everything() {
