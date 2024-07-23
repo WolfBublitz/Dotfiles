@@ -47,7 +47,7 @@ install_packages_for_suse() {
 install_package() {
    package_name=$1
 
-   echo -e "\033[36m  Installing $package_name...\033[0m"
+   echo -e "\033[32;1m -> \033[34;1mInstalling $package_name\033[0m"
 
    case $system_info in
       manjaro) sudo pacman -S $package_name ;;
@@ -62,14 +62,14 @@ install_package() {
 install_oh_my_posh() {
    package_name="oh my posh"
 
-   echo -e "\033[36m  Installing $package_name\033[0m"
+   echo -e "\033[32;1m -> \033[34;1mInstalling $package_name\033[0m"
 
    curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.bin
 }
 
 install_packages() {
    system_info=$(get_system_info)
-   echo -e "\033[37;44m Installing packages for $system_info \033[0m"
+   echo -e "\033[37;44;1m Installing packages for $system_info \033[0m"
 
    install_package bat
    install_package git
