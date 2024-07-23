@@ -10,8 +10,8 @@ if [ -x "$(command -v lsd)" ]; then
   alias lt='ls --tree'
 fi
 
-if ! [ -z "$PS1" ]; then
-
 if test -f "/etc/profile.d/bash_completion.sh"; then
 	source /etc/profile.d/bash_completion.sh
 fi
+
+eval "$(oh-my-posh init bash)"
