@@ -64,16 +64,36 @@ install_oh_my_posh() {
 
    echo -e "\033[32;1m -> \033[34;1mInstalling $package_name\033[0m"
 
+   mkdir -p ~/.bin
+
    curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.bin
+}
+
+update_package_manager() {
+   system_info=$(get_system_info)
+
+   echo -e "\033[32;1m -> \033[31;1mUpdating Package Manager\033[0m"
+
+   case $system_info in
+      manjaro) sudo pacman -Syu ;;
+      arch) sudo pacman -Syu ;;
+      ubuntu) sudo apt-get update ;;
+      debian) sudo apt-get update ;;
+      mac) brew update ;;
+      *) echo "Unknown system!" && exit 1 ;;
+   esac
 }
 
 install_packages() {
    system_info=$(get_system_info)
    echo -e "\033[37;44;1m Installing packages for $system_info \033[0m"
 
+   update_package_manager
+
    install_package bat
    install_package git
    install_package htop
+   install_package lsd
    install_package vim
    install_package wget
    install_package zsh
@@ -106,7 +126,6 @@ main() {
       -ip | --install-packages) install_packages ;;
       *) show_menu ;;
    esac
-   exit 0
 }
 
 main "$@"
