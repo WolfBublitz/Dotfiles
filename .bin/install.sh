@@ -103,6 +103,12 @@ install_powershell() {
    else
       bash <(curl -s https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/install-powershell.sh)
    fi
+
+   echo -e "\033[32;1m -> \033[34;1mInstalling $package_name modules\033[0m"
+   pwsh -NoProfile -c "Set-PSResourceRepository -Name "PSGallery" -Priority 25 -Trusted -PassThru"
+   pwsh -NoProfile -c "Install-Module -Name PSReadLine -AllowClobber -Force"
+   pwsh -NoProfile -c "Install-Module -Name CompletionPredictor -Force"
+   pwsh -NoProfile -c "Install-Module -Name PwshSpectreConsole  -Force"
 }
 
 install_powershell_arm() {
