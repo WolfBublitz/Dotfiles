@@ -17,10 +17,16 @@ declare -a common_packages=(
    bat curl git htop vim wget zsh
 )
 
-get_system_info() {
+get_distro_id() {
     [ -e /etc/os-release ] && source /etc/os-release && echo "${ID:-Unknown}" && return
     [ -e /etc/lsb-release ] && source /etc/lsb-release && echo "${DISTRIB_ID:-Unknown}" && return
     [ "$(uname)" == "Darwin" ] && echo "mac" && return
+}
+
+get_distro_version() {
+    [ -e /etc/os-release ] && source /etc/os-release && echo "${VERSION_ID:-Unknown}" && return
+    [ -e /etc/lsb-release ] && source /etc/lsb-release && echo "${DISTRIB_RELEASE:-Unknown}" && return
+    [ "$(uname)" == "Darwin" ] && echo "" && return
 }
 
 install_packages_for_arch() {
@@ -77,7 +83,7 @@ install_powershell() {
 
    arch=$(uname -m)
 
-   distro=$(get_system_info)
+   distro=$(get_distro_id)
 
    if [ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ]; then
       install_powershell_arm
@@ -122,8 +128,48 @@ install_powershell_arm() {
    ln -s $HOME/.powershell/pwsh $HOME/.bin/pwsh
 }
 
+install_fastfetch() {
+   package_name="fastfetch"
+
+   echo -e "\033[32;1m -> \033[34;1mInstalling $package_name\033[0m"
+
+   arch=$(uname -m)
+
+   distro=$(get_distro_id)
+   distro_version=$((get_distro_version))
+
+   if [ "$distro" == "debian" ] && [ "$distro_version" -lt 12 ]; then
+      install_fastfetch_debian12
+   else
+      install_package fastfetch
+   fi
+}
+
+install_fastfetch_debian12() {
+   echo "install_fastfetch_debian12"
+
+   arch=$(uname -m)
+
+   release=$(curl -sL https://api.github.com/repos/fastfetch-cli/fastfetch/releases/latest)
+   url=$(echo $release | jq -r ".assets[].browser_download_url" | grep "fastfetch-linux-$arch.zip")
+
+   wget $url
+
+   archive_name=${url##*/}
+
+   [ -e $HOME/.fastfetch ] && rm -rf $HOME/.fastfetch
+
+   unzip $archive_name -d $HOME
+
+   rm $archive_name
+
+   mv $HOME/${archive_name%.zip} $HOME/.fastfetch
+
+   ln -s $HOME/.fastfetch/usr/bin/fastfetch $HOME/.bin/fastfetch
+}
+
 update_package_manager() {
-   system_info=$(get_system_info)
+   system_info=$(get_distro_id)
 
    echo -e "\033[32;1m -> \033[31;1mUpdating Package Manager\033[0m"
 
@@ -138,7 +184,7 @@ update_package_manager() {
 }
 
 install_packages() {
-   system_info=$(get_system_info)
+   system_info=$(get_distro_id)
    echo -e "\033[37;44;1m Installing packages for $system_info \033[0m"
 
    update_package_manager
@@ -152,6 +198,7 @@ install_packages() {
    install_package zsh
    install_oh_my_posh
    install_powershell
+   install_fastfetch
 }
 
 install_everything() {
