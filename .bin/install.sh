@@ -29,9 +29,9 @@ declare -a common_packages=(
 )
 
 get_distro_id() {
-    [ -e /etc/os-release ] && source /etc/os-release && echo "${ID:-Unknown}" && return
-    [ -e /etc/lsb-release ] && source /etc/lsb-release && echo "${DISTRIB_ID:-Unknown}" && return
-    [ "$(uname)" == "Darwin" ] && echo "mac" && return
+   [ -e /etc/os-release ] && source /etc/os-release && echo "${ID:-Unknown}" && return
+   [ -e /etc/lsb-release ] && source /etc/lsb-release && echo "${DISTRIB_ID:-Unknown}" && return
+   [ "$(uname)" == "Darwin" ] && echo "mac" && return
 }
 
 get_distro_version() {
@@ -96,7 +96,7 @@ install_powershell() {
 
    distro=$(get_distro_id)
 
-   if [ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ]; then
+   if [ "$distro" == "debian" ] && ([ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ]); then
       install_powershell_arm
    elif [ "$distro" == "mac" ]; then
       brew install --cask powershell
