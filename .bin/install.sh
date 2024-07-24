@@ -70,23 +70,56 @@ install_oh_my_posh() {
 }
 
 install_powershell() {
+
    package_name="PowerShell"
 
    echo -e "\033[32;1m -> \033[34;1mInstalling $package_name\033[0m"
 
+   arch=$(uname -m)
+
+   distro=$(get_system_info)
+
+   if [ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ]; then
+      install_powershell_arm
+   elif [ "$distro" == "mac" ]; then
+      brew install --cask powershell
+   else
+      bash <(curl -s https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/install-powershell.sh)
+   fi
+}
+
+install_powershell_arm() {
    sudo apt-get install jq libssl1.1 libunwind8 -y
+
+   name=$(uname -m)
+
+   case $name in
+      arm64) arch="arm";;
+      aarch64) arch="arm";;
+      *) echo "Unknown architecture $name!" && exit 1 ;;
+   esac
 
    # Grab the latest tar.gz
    bits=$(getconf LONG_BIT)
    release=$(curl -sL https://api.github.com/repos/PowerShell/PowerShell/releases/latest)
-   package=$(echo $release | jq -r ".assets[].browser_download_url" | grep "linux-arm${bits}.tar.gz")
+   package=$(echo $release | jq -r ".assets[].browser_download_url" | grep "linux-${arch}${bits}.tar.gz")
    wget $package
+
+   [ -e $HOME/.powershell ] && rm -rf $HOME/.powershell
 
    # Make folder to put powershell
    mkdir $HOME/.powershell
 
    # Unpack the tar.gz file
    tar -xvf "./${package##*/}" -C $HOME/.powershell
+
+   # Make pwsh executable
+   chmod +x $HOME/.powershell/pwsh
+
+   # Create a symlink to pwsh
+   [ -e $HOME/.bin/pwsh ] && rm -rf $HOME/.bin/pwsh
+
+   ln -s $HOME/.powershell/pwsh $HOME/.bin/pwsh
 }
 
 update_package_manager() {
