@@ -1,7 +1,8 @@
 #!/bin/bash
 
 install_dotfiles() {
-   echo -e "\u001b[7m Installing Dotfiles \u001b[0m"
+   echo -e "\033[37;44;1m Installing Dotfiles \033[0m"
+
    git clone --bare https://github.com/WolfBublitz/Dotfiles.git $HOME/.dotfiles
 
    function dotfiles {
@@ -11,6 +12,16 @@ install_dotfiles() {
    dotfiles config --local status.showUntrackedFiles no
 
    dotfiles checkout --force
+}
+
+update_dotfiles() {
+   echo -e "\033[37;44;1m Updating Dotfiles \033[0m"
+
+   function dotfiles {
+      /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+   }
+
+   dotfiles pull
 }
 
 declare -a common_packages=(
@@ -165,6 +176,7 @@ install_fastfetch_debian12() {
 
    mv $HOME/${archive_name%.zip} $HOME/.fastfetch
 
+   [ -e $HOME/.bin/fastfetch ] && rm -rf $HOME/.bin/fastfetch
    ln -s $HOME/.fastfetch/usr/bin/fastfetch $HOME/.bin/fastfetch
 }
 
@@ -206,26 +218,18 @@ install_everything() {
    install_packages
 }
 
-show_menu() {
-   echo -e " 0 Install everything"
-   echo -e " 1 Install dotfiles"
-   echo -e " 2 Install packages"
-
-   read -r option
-   case $option in
-      0) install_everything ;;
-      1) install_dotfiles ;;
-      2) install_packages ;;
-      *) exit 0 ;;
-   esac
+show_help() {
+   echo -e " -id --install-dotfiles Install dotfiles"
+   echo -e " -ud --update-dotfiles  Update dotfiles"
+   echo -e " -ip --install-packages Install packages"
 }
 
 main() {
    case "$1" in
-      -a | --all | a | all) setup_everything ;;
       -id | --install-dotfiles) install_dotfiles ;;
+      -ud | --update-dotfiles) update_dotfiles ;;
       -ip | --install-packages) install_packages ;;
-      *) show_menu ;;
+      -h | --help) show_help ;;
    esac
 }
 
