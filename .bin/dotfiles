@@ -197,6 +197,10 @@ install_fastfetch_debian12() {
 
    arch=$(uname -m)
 
+   if [ "$arch" == "x86_64" ]; then
+      arch="amd64"
+   fi
+
    release=$(curl -sL https://api.github.com/repos/fastfetch-cli/fastfetch/releases/latest)
    url=$(echo $release | jq -r ".assets[].browser_download_url" | grep "fastfetch-linux-$arch.zip")
 
