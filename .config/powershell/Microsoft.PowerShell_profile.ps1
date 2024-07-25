@@ -82,7 +82,17 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
   # lists files and directories
   if (Test-CommandExists lsd) {
     # use lsd if available
-    Set-Alias -Name l -Value lsd
+    Set-Alias -Name ls -Value lsd
+
+    function l_ { lsd -l }
+    function la_ { lsd -a }
+    function lla_ { lsd -la }
+    function lt_ { lsd --tree }
+
+    Set-Alias -Name l -Value l_
+    Set-Alias -Name la -Value la_
+    Set-Alias -Name lla -Value lla_
+    Set-Alias -Name lt -Value lt_
   }
   else {
     # ls otherwise
