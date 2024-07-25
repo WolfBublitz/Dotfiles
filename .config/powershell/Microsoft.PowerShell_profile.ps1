@@ -8,6 +8,7 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
   # │ PATH                                                                 │
   # └──────────────────────────────────────────────────────────────────────┘
 
+  $env:PATH = $env:PATH + ":$HOME/.bin"
   $env:PATH = $env:PATH + ":$HOME/.local/share/powershell/Scripts"
 
   if ($IsMacOS) {
@@ -71,12 +72,6 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
   # ┌──────────────────────────────────────────────────────────────────────┐
   # │ Shortcuts                                                            │
   # └──────────────────────────────────────────────────────────────────────┘
-
-  # shortcut: dotfiles
-  # git command for dotfiles
-  Function dotfiles {
-    git --git-dir=$HOME/.dotfiles --work-tree=$HOME @args
-  }
 
   # shortcut: l
   # lists files and directories
