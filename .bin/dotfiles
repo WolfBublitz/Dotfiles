@@ -99,8 +99,8 @@ install_package() {
    case $system_info in
       manjaro) sudo pacman -S $package_name ;;
       arch) sudo pacman -S $package_name ;;
-      ubuntu) sudo apt-get install $package_name ;;
-      debian) sudo apt-get install $package_name ;;
+      ubuntu) sudo apt-get install -y $package_name ;;
+      debian) sudo apt-get install -y $package_name ;;
       mac) brew install $package_name ;;
       *) echo "Unknown system!" && exit 1 ;;
    esac
