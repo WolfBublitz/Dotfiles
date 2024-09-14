@@ -16,4 +16,6 @@ if [ -x "$(command -v fastfetch)" ]; then
   fastfetch
 fi
 
+alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
 eval "$(oh-my-posh init bash --config $HOME/.oh-my-posh/theme.omp.json)"
