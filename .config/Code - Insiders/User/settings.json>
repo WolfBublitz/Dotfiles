@@ -1,0 +1,23 @@
+{
+  "dotnet.inlayHints.enableInlayHintsForParameters": true,
+  "dotnet.inlayHints.enableInlayHintsForLiteralParameters": true,
+  "dotnet.inlayHints.enableInlayHintsForIndexerParameters": true,
+  "dotnet.inlayHints.enableInlayHintsForObjectCreationParameters": true,
+  "dotnet.inlayHints.enableInlayHintsForOtherParameters": true,
+  "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
+
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+
+  "editor.fontFamily": "FiraCode Nerd Font",
+  "editor.fontLigatures": true,
+  "editor.wordWrap": "off",
+
+  "files.autoSave": "afterDelay",
+
+  "cSpell.userWords": [
+    "Bublitz",
+    "KROHNE",
+  ],
+}
