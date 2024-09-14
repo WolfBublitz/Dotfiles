@@ -20,4 +20,8 @@
     "Bublitz",
     "KROHNE",
   ],
+  "conventionalCommits.scopes": [
+    "CHANGELOG",
+    "README"
+  ],
 }
