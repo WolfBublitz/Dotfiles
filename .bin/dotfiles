@@ -231,6 +231,7 @@ update_package_manager() {
       ubuntu) sudo apt-get update ;;
       debian) sudo apt-get update ;;
       mac) brew update ;;
+      fedora) ;;
       *) echo "Unknown system!" && exit 1 ;;
    esac
 }
