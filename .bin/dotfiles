@@ -229,7 +229,7 @@ install_fastfetch_debian12() {
 }
 
 add_package_sources() {
-   echo -e "\033[32;1m -> \033[31;1mAdding Package Manager\033[0m"
+   echo -e "\033[32;1m -> \033[31;1mAdding Package Source\033[0m"
 
    distro=$(get_distro_id)
 
@@ -240,7 +240,7 @@ add_package_sources() {
 }
 
 add_package_sources_fedora() {
-   echo "setup Microsoft package repository"
+   echo "adding Microsoft package repository"
    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
    curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo
 }
