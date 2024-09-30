@@ -102,6 +102,7 @@ install_package() {
       ubuntu) sudo apt-get install -y $package_name ;;
       debian) sudo apt-get install -y $package_name ;;
       mac) brew install $package_name ;;
+      fedora) sudo dnf install $package_name -y ;;
       *) echo "Unknown system!" && exit 1 ;;
    esac
 }
