@@ -55,7 +55,7 @@ commit_dotfiles() {
 }
 
 declare -a common_packages=(
-   bat curl git htop vim wget zsh
+   bat curl git htop unzip vim wget zsh
 )
 
 get_distro_id() {
@@ -272,6 +272,7 @@ install_packages() {
    install_package git
    install_package htop
    install_package lsd
+   install_package unzip
    install_package vim
    install_package wget
    install_package zsh
