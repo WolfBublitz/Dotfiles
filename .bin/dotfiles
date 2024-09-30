@@ -233,7 +233,7 @@ add_package_sources() {
 
    distro=$(get_distro_id)
 
-   if [[ "$distor" == "fedora" ]]; then
+   if [[ "$distro" == "fedora" ]]; then
       add_package_sources_fedora
    fi
 }
