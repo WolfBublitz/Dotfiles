@@ -128,6 +128,8 @@ install_powershell() {
 
    if [ "$distro" == "debian" ] && ([ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ]); then
       install_powershell_arm
+   elif [ "$distro" == "fedora" ]; then
+      install_powershell_fedora
    elif [ "$distro" == "mac" ]; then
       brew install --cask powershell
    else
@@ -175,6 +177,10 @@ install_powershell_arm() {
    ln -s $HOME/.powershell/pwsh $HOME/.bin/pwsh
 }
 
+install_powershell_fedora() {
+   sudo dnf install powershell -y
+}
+
 install_fastfetch() {
    package_name="fastfetch"
 
@@ -220,6 +226,24 @@ install_fastfetch_debian12() {
    ln -s $HOME/.fastfetch/usr/bin/fastfetch $HOME/.bin/fastfetch
 }
 
+configure_package_sources() {
+   system_info=$(get_distro_id)
+
+   echo -e "\033[32;1m -> \033[31;1mUpdating Package Manager\033[0m"
+
+   case $system_info in
+      fedora) configure_package_sources_fedora ;;
+      *) ;;
+   esac
+}
+
+configure_package_sources_fedora() {
+   echo "setup Microsoft package repository"
+   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+   curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo
+   dnf makecache
+}
+
 update_package_manager() {
    system_info=$(get_distro_id)
 
@@ -240,6 +264,7 @@ install_packages() {
    system_info=$(get_distro_id)
    echo -e "\033[37;44;1m Installing packages for $system_info \033[0m"
 
+   configure_package_sources
    update_package_manager
 
    install_package bat
