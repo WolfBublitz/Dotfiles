@@ -79,7 +79,7 @@ install_packages_for_debian() {
 }
 
 install_packages_for_fedora() {
-   sudo dnf install "${common_packages[@]}"
+   sudo dnf install "${common_packages[@]}" -y
 }
 
 install_packages_for_mac() {
@@ -89,7 +89,6 @@ install_packages_for_mac() {
 install_packages_for_suse() {
    echo "Not implemented yet!"
 }
-
 
 install_package() {
    package_name=$1
@@ -250,7 +249,9 @@ update_package_manager() {
 
    echo -e "\033[32;1m -> \033[31;1mUpdating Package Manager\033[0m"
 
-   case $system_info in
+   distro=$(get_distro_id)
+
+   case $distro in
       manjaro) sudo pacman -Syu ;;
       arch) sudo pacman -Syu ;;
       ubuntu) sudo apt-get update ;;
