@@ -263,7 +263,8 @@ update_package_manager() {
 
 install_packages() {
    system_info=$(get_distro_id)
-   echo -e "\033[37;44;1m Installing packages for $system_info \033[0m"
+   arch=$(uname -m)
+   echo -e "\033[37;44;1m Installing packages for $system_info $arch \033[0m"
 
    add_package_sources
    update_package_manager
