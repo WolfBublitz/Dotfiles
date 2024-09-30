@@ -130,6 +130,8 @@ install_powershell() {
 
    if [ "$distro" == "debian" ] && ([ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ]); then
       install_powershell_arm
+   if [ "$distro" == "fedora" ] && ([ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ]); then
+      install_powershell_arm
    elif [ "$distro" == "fedora" ]; then
       install_powershell_fedora
    elif [ "$distro" == "mac" ]; then
