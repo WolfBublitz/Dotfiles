@@ -267,6 +267,7 @@ install_packages() {
    configure_package_sources
    update_package_manager
 
+   install_package git
    install_package bat
    install_package git
    install_package htop
