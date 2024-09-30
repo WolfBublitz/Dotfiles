@@ -243,7 +243,6 @@ adding_package_sources_fedora() {
    echo "setup Microsoft package repository"
    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
    curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo
-   dnf makecache
 }
 
 update_package_manager() {
@@ -257,6 +256,8 @@ update_package_manager() {
       sudo pacman -Syu
    elif [ "$distro" == "mac" ]; then
       brew update
+   elif [ "$distro" == "fedora" ]; then
+      dnf makecache
    fi
 }
 
