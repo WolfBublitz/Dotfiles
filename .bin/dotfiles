@@ -71,15 +71,15 @@ get_distro_version() {
 }
 
 install_packages_for_arch() {
-   sudo pacman -S "${common_packages[@]}"
+   pacman -S "${common_packages[@]}"
 }
 
 install_packages_for_debian() {
-   sudo apt install "${common_packages[@]}"
+   apt install "${common_packages[@]}"
 }
 
 install_packages_for_fedora() {
-   sudo dnf install "${common_packages[@]}" -y
+   dnf install "${common_packages[@]}" -y
 }
 
 install_packages_for_mac() {
@@ -98,13 +98,13 @@ install_package() {
    distro=$(get_distro_id)
 
    if [ "$distro" == "debian" ] || [ "$distro" == "ubuntu" ]; then
-      sudo apt-get install $package_name -y
+      apt-get install $package_name -y
    elif [ "$distro" == "manjaro" ] || [ "$distro" == "arch" ]; then
-      sudo pacman -S $package_name
+      pacman -S $package_name
    elif [ "$distro" == "mac" ]; then
       brew install $package_name
    elif [ "$distro" == "fedora" ]; then
-      sudo dnf install $package_name -y
+      dnf install $package_name -y
    fi
 }
 
@@ -146,7 +146,7 @@ install_powershell() {
 }
 
 install_powershell_arm() {
-   sudo apt-get install jq libssl1.1 libunwind8 -y
+   apt-get install jq libssl1.1 libunwind8 -y
 
    name=$(uname -m)
 
@@ -180,7 +180,7 @@ install_powershell_arm() {
 }
 
 install_powershell_fedora() {
-   sudo dnf install powershell -y
+   dnf install powershell -y
 }
 
 install_fastfetch() {
@@ -229,7 +229,8 @@ install_fastfetch_debian12() {
 }
 
 add_package_sources() {
-   echo -e "\033[32;1m -> \033[31;1mAdding Package Source\033[0m"
+   echo -e "\033[37;44;1m Adding Package Sources \033[0m"
+   
 
    distro=$(get_distro_id)
 
@@ -239,9 +240,9 @@ add_package_sources() {
 }
 
 add_package_sources_fedora() {
-   echo -e "\033[37;44;1m Adding Microsoft package repository Dotfiles \033[0m"
-   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-   curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo
+   echo -e "\033[32;1m -> \033[31;1mAdding Microsoft package source\033[0m"
+   rpm --import https://packages.microsoft.com/keys/microsoft.asc
+   curl https://packages.microsoft.com/config/rhel/7/prod.repo | tee /etc/yum.repos.d/microsoft.repo
 }
 
 update_package_manager() {
@@ -250,9 +251,9 @@ update_package_manager() {
    distro=$(get_distro_id)
 
    if [ "$distro" == "debian" ] || [ "$distro" == "ubuntu" ]; then
-      sudo apt-get update
+      apt-get update
    elif [ "$distro" == "manjaro" ] || [ "$distro" == "arch" ]; then
-      sudo pacman -Syu
+      pacman -Syu
    elif [ "$distro" == "mac" ]; then
       brew update
    elif [ "$distro" == "fedora" ]; then
