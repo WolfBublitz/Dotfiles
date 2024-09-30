@@ -99,11 +99,11 @@ install_package() {
 
    if [ "$distro" == "debian" ] || [ "$distro" == "ubuntu" ]; then
       sudo apt-get install $package_name
-   elif [ "$distro" == "manjaro"] || [ "$distro" == "arch" ]; then
+   elif [ "$distro" == "manjaro" ] || [ "$distro" == "arch" ]; then
       sudo pacman -S $package_name
    elif [ "$distro" == "mac" ]; then
       brew install $package_name
-   elif [ "$distro" == "mac" ]; then
+   elif [ "$distro" == "fedora" ]; then
       sudo dnf install $package_name -y
    fi
 }
