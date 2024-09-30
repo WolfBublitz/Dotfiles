@@ -239,7 +239,7 @@ add_package_sources() {
 }
 
 add_package_sources_fedora() {
-   echo "adding Microsoft package repository"
+   echo -e "\033[37;44;1m Adding Microsoft package repository Dotfiles \033[0m"
    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
    curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo
 }
