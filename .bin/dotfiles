@@ -236,7 +236,6 @@ add_package_sources() {
    if [[ "$distor" == "fedora" ]]; then
       add_package_sources_fedora
    fi
-   esac
 }
 
 add_package_sources_fedora() {
