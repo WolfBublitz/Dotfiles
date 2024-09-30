@@ -228,18 +228,18 @@ install_fastfetch_debian12() {
    ln -s $HOME/.fastfetch/usr/bin/fastfetch $HOME/.bin/fastfetch
 }
 
-adding_package_sources() {
-   system_info=$(get_distro_id)
-
+add_package_sources() {
    echo -e "\033[32;1m -> \033[31;1mAdding Package Manager\033[0m"
 
-   case $system_info in
-      fedora) adding_package_sources_fedora ;;
-      *) ;;
+   distro=$(get_distro_id)
+
+   if [[ "$distor" == "fedora" ]]; then
+      add_package_sources_fedora
+   fi
    esac
 }
 
-adding_package_sources_fedora() {
+add_package_sources_fedora() {
    echo "setup Microsoft package repository"
    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
    curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo
@@ -265,7 +265,7 @@ install_packages() {
    system_info=$(get_distro_id)
    echo -e "\033[37;44;1m Installing packages for $system_info \033[0m"
 
-   configure_package_sources
+   add_package_sources
    update_package_manager
 
    install_package git
