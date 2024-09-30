@@ -201,8 +201,6 @@ install_fastfetch() {
 }
 
 install_fastfetch_debian12() {
-   echo "install_fastfetch_debian12"
-
    arch=$(uname -m)
 
    if [ "$arch" == "x86_64" ]; then
