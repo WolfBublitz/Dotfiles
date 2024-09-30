@@ -95,15 +95,17 @@ install_package() {
 
    echo -e "\033[32;1m -> \033[34;1mInstalling $package_name\033[0m"
 
-   case $system_info in
-      manjaro) sudo pacman -S $package_name ;;
-      arch) sudo pacman -S $package_name ;;
-      ubuntu) sudo apt-get install -y $package_name ;;
-      debian) sudo apt-get install -y $package_name ;;
-      mac) brew install $package_name ;;
-      fedora) sudo dnf install $package_name -y ;;
-      *) echo "Unknown system!" && exit 1 ;;
-   esac
+   distro=$(get_distro_id)
+
+   if [ "$distro" == "debian" ] || [ "$distro" == "ubuntu" ]; then
+      sudo apt-get install $package_name
+   elif [ "$distro" == "manjaro"] || [ "$distro" == "arch"] ; then
+      sudo pacman -S $package_name
+   elif [ "$distro" == "mac"]; then
+      brew install $package_name
+   elif [ "$distro" == "mac"]; then
+      sudo dnf install $package_name -y
+   fi
 }
 
 install_oh_my_posh() {
@@ -245,21 +247,17 @@ adding_package_sources_fedora() {
 }
 
 update_package_manager() {
-   system_info=$(get_distro_id)
-
    echo -e "\033[32;1m -> \033[31;1mUpdating Package Manager\033[0m"
 
    distro=$(get_distro_id)
 
-   case $distro in
-      manjaro) sudo pacman -Syu ;;
-      arch) sudo pacman -Syu ;;
-      ubuntu) sudo apt-get update ;;
-      debian) sudo apt-get update ;;
-      mac) brew update ;;
-      fedora) ;;
-      *) echo "Unknown system!" && exit 1 ;;
-   esac
+   if [ "$distro" == "debian" ] || [ "$distro" == "ubuntu" ]; then
+      sudo apt-get update
+   elif [ "$distro" == "manjaro"] || [ "$distro" == "arch"] ; then
+      sudo pacman -Syu
+   elif [ "$distro" == "mac"]; then
+      brew update
+   fi
 }
 
 install_packages() {
