@@ -270,6 +270,7 @@ install_packages() {
    install_package bat
    install_package git
    install_package htop
+   install_package jq
    install_package lsd
    install_package unzip
    install_package vim
