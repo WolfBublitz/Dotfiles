@@ -231,7 +231,6 @@ install_fastfetch_debian12() {
 add_package_sources() {
    echo -e "\033[37;44;1m Adding Package Sources \033[0m"
    
-
    distro=$(get_distro_id)
 
    if [[ "$distro" == "fedora" ]]; then
@@ -267,6 +266,7 @@ update_package_manager() {
 install_packages() {
    system_info=$(get_distro_id)
    arch=$(uname -m)
+
    echo -e "\033[37;44;1m Installing packages for $system_info $arch \033[0m"
 
    add_package_sources
