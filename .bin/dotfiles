@@ -243,6 +243,9 @@ add_package_sources_fedora() {
    echo -e "\033[32;1m -> \033[31;1mAdding Microsoft package source\033[0m"
    rpm --import https://packages.microsoft.com/keys/microsoft.asc
    curl https://packages.microsoft.com/config/rhel/7/prod.repo | tee /etc/yum.repos.d/microsoft.repo
+
+   echo -e "\033[32;1m -> \033[31;1mAdding RPM Fusion\033[0m"
+   dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 }
 
 update_package_manager() {
