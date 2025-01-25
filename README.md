@@ -9,7 +9,7 @@ To run the installation the following tools muste be installed:
 
 ### Linux / MacOS
 
-Open a bash terminal an execute:
+Open a bash terminal and execute:
 
 ```shell
 source <(https://raw.githubusercontent.com/WolfBublitz/Dotfiles/refs/heads/master/.bin/dotfiles)
@@ -18,3 +18,8 @@ install_everything
 ```
 
 ### Windows
+
+Open a power shell terminal and execute:
+
+```pwsh
+```
