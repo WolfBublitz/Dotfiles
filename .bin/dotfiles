@@ -31,7 +31,7 @@ push_dotfiles() {
       /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
    }
 
-   dotfiles push
+   dotfiles push --set-upstream origin master
 }
 
 add_dotfiles() {
