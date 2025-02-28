@@ -124,27 +124,31 @@ install_powershell() {
 
    echo -e "\033[32;1m -> \033[34;1mInstalling $package_name\033[0m"
 
-   arch=$(uname -m)
-
-   distro=$(get_distro_id)
-
-   if [ "$distro" == "debian" ] && ([ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ]); then
-      install_powershell_arm
-   elif [ "$distro" == "fedora" ] && ([ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ]); then
-      install_powershell_arm
-   elif [ "$distro" == "fedora" ]; then
-      install_powershell_fedora
-   elif [ "$distro" == "mac" ]; then
-      brew install --cask powershell
+   if [ -x "$(command -v pwsh)" ]; then
+      echo -e "\033[32;1m -> \033[34;1m$package_name already installed\033[0m"
    else
-      bash <(curl -s https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/install-powershell.sh)
-   fi
+      arch=$(uname -m)
 
-   echo -e "\033[32;1m -> \033[34;1mInstalling $package_name modules\033[0m"
-   pwsh -NoProfile -c "Set-PSResourceRepository -Name "PSGallery" -Priority 25 -Trusted -PassThru"
-   pwsh -NoProfile -c "Install-Module -Name PSReadLine -AllowClobber -Force"
-   pwsh -NoProfile -c "Install-Module -Name CompletionPredictor -Force"
-   pwsh -NoProfile -c "Install-Module -Name PwshSpectreConsole  -Force"
+      distro=$(get_distro_id)
+   
+      if [ "$distro" == "debian" ] && ([ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ]); then
+         install_powershell_arm
+      elif [ "$distro" == "fedora" ] && ([ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ]); then
+         install_powershell_arm
+      elif [ "$distro" == "fedora" ]; then
+         install_powershell_fedora
+      elif [ "$distro" == "mac" ]; then
+         brew install --cask powershell
+      else
+         bash <(curl -s https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/install-powershell.sh)
+      fi
+   
+      echo -e "\033[32;1m -> \033[34;1mInstalling $package_name modules\033[0m"
+      pwsh -NoProfile -c "Set-PSResourceRepository -Name "PSGallery" -Priority 25 -Trusted -PassThru"
+      pwsh -NoProfile -c "Install-Module -Name PSReadLine -AllowClobber -Force"
+      pwsh -NoProfile -c "Install-Module -Name CompletionPredictor -Force"
+      pwsh -NoProfile -c "Install-Module -Name PwshSpectreConsole  -Force"
+   fi
 }
 
 install_powershell_arm() {
