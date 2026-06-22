@@ -1,0 +1,18 @@
+{
+    "redhat.telemetry.enabled": true,
+    "workbench.editorAssociations": {
+        "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.qrc": "default",
+        "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.ui": "default",
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.qrc": "qt-core.qrcEditor"
+    },
+    "qt-core.additionalQtPaths": [
+        {
+            "name": "Qt-6.11.1-macx-clang-arm64_from_PATH",
+            "path": "/opt/homebrew/bin/qtpaths"
+        }
+    ],
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "terminal.integrated.fontFamily": "Nerd Fonts"
+}
