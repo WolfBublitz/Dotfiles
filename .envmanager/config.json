@@ -1,0 +1,15 @@
+{
+  "repositoryUrl": "https://github.com/WolfBublitz/Dotfiles.git",
+  "branch": "test",
+  "tools": [
+    "git",
+    "htop",
+    "vim",
+    "jandedobbeleer/oh-my-posh/oh-my-posh"
+  ],
+  "homebrew": {
+    "casks": [
+      "jandedobbeleer/oh-my-posh"
+    ]
+  }
+}
