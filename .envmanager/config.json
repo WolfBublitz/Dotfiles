@@ -1,0 +1,8 @@
+{
+  "tools": [
+    "git",
+    "htop",
+    "bat",
+    "vim"
+  ],
+}
