@@ -8,3 +8,6 @@ tools:
 - name: vim
   packageManager: brew
   version: 
+- name: lsd
+  packageManager: brew
+  version: 
