@@ -5,3 +5,6 @@ tools:
 - name: htop
   packageManager: brew
   version: 
+- name: vim
+  packageManager: brew
+  version: 
