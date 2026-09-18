@@ -1,4 +1,7 @@
 name: MacBook
 shells: []
 variables: {}
-tools: []
+tools:
+- name: htop
+  packageManager: brew
+  version: 
