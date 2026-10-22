@@ -1,6 +1,7 @@
 name: MacBook
 shells:
 - bash
+- powershell
 variables: {}
 tools:
 - name: htop
