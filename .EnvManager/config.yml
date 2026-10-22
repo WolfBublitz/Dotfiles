@@ -1,0 +1,14 @@
+name: MacBook
+shells:
+- bash
+variables: {}
+tools:
+- name: htop
+  packageManager: brew
+  version: 
+- name: vim
+  packageManager: brew
+  version: 
+- name: lsd
+  packageManager: brew
+  version: 
