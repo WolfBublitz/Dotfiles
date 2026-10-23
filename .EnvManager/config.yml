@@ -2,6 +2,7 @@ name: MacBook
 shells:
 - bash
 - powershell
+- zsh
 variables: {}
 tools:
 - name: htop
