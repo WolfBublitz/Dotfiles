@@ -14,5 +14,9 @@
     ],
     "git.confirmSync": false,
     "git.autofetch": true,
-    "terminal.integrated.fontFamily": "Nerd Fonts"
+    "terminal.integrated.fontFamily": "Nerd Fonts",
+    "maui.configuration.javaSdkPreferredPath": "/Library/Java/JavaVirtualMachines/microsoft-11.jdk/Contents/Home",
+    "github.copilot.enable": {
+        "markdown": true
+    }
 }
