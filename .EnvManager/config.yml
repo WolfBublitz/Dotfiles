@@ -8,9 +8,18 @@ tools:
 - name: htop
   packageManager: brew
   version: 
+  installCommand: 
+  updateCommand: 
+  removeCommand: 
 - name: vim
   packageManager: brew
   version: 
+  installCommand: 
+  updateCommand: 
+  removeCommand: 
 - name: lsd
   packageManager: brew
   version: 
+  installCommand: 
+  updateCommand: 
+  removeCommand: 
