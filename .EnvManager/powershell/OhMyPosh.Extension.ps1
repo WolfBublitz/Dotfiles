@@ -175,4 +175,4 @@ if ($hostname -eq 'ConsoleHost' -or $hostname -eq 'Visual Studio Code Host' ) {
   oh-my-posh init pwsh --config ~/.oh-my-posh/theme.omp.json | Invoke-Expression
 }
 
-Remove-Variable hostname
+Remove-Variable $hostname
