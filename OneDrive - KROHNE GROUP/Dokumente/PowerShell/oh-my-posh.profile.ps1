@@ -1,1 +1,1 @@
-oh-my-posh init pwsh --config ~/.oh-my-posh/theme.omp.json | Invoke-Expression
+oh-my-posh init pwsh --config "C:\Users\debubliw\OneDrive - KROHNE GROUP\config\oh-my-posh-theme.json" | Invoke-Expression
