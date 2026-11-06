@@ -31,3 +31,9 @@ tools:
   installCommand: 
   updateCommand: 
   removeCommand: 
+- name: fastfetch
+  packageManager: brew
+  version: 
+  installCommand: 
+  updateCommand: 
+  removeCommand: 
