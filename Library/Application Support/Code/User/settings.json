@@ -17,7 +17,12 @@
     "terminal.integrated.fontFamily": "Nerd Fonts",
     "maui.configuration.javaSdkPreferredPath": "/Library/Java/JavaVirtualMachines/microsoft-11.jdk/Contents/Home",
     "github.copilot.enable": {
-        "markdown": true
+        "markdown": true,
+        "csharp": true
     },
-    "chat.viewSessions.orientation": "stacked"
+    "chat.viewSessions.orientation": "stacked",
+    "chat.tools.terminal.autoApprove": {
+        "printf": true,
+        "/^dotnet test --project tests/EnvManager\\.Tests/EnvManager\\.Tests\\.csproj$/": true
+    }
 }
