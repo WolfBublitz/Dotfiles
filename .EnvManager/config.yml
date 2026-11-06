@@ -4,6 +4,8 @@ shells:
 - powershell
 - zsh
 variables: {}
+settings:
+  editor: vim
 tools:
 - name: htop
   packageManager: brew
