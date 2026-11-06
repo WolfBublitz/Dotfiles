@@ -23,3 +23,9 @@ tools:
   installCommand: 
   updateCommand: 
   removeCommand: 
+- name: bat
+  packageManager: brew
+  version: 
+  installCommand: 
+  updateCommand: 
+  removeCommand: 
