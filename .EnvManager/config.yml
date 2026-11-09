@@ -4,4 +4,11 @@ name: Linux
 shells:
 - bash
 variables: {}
-tools: []
+settings: {}
+tools:
+- name: fastfetch
+  packageManager: apt
+  version: 
+  installCommand: 
+  updateCommand: 
+  removeCommand: 
