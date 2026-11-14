@@ -12,3 +12,9 @@ tools:
   installCommand: 
   updateCommand: 
   removeCommand: 
+- name: htop
+  packageManager: dnf
+  version: 
+  installCommand: 
+  updateCommand: 
+  removeCommand: 
