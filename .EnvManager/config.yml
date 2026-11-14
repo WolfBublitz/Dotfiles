@@ -18,3 +18,9 @@ tools:
   installCommand: 
   updateCommand: 
   removeCommand: 
+- name: vim
+  packageManager: dnf
+  version: 
+  installCommand: 
+  updateCommand: 
+  removeCommand: 
