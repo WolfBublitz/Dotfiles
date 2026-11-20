@@ -7,7 +7,7 @@ variables: {}
 settings: {}
 tools:
 - name: fastfetch
-  packageManager: apt
+  packageManager: dnf
   version: 
   installCommand: 
   updateCommand: 
