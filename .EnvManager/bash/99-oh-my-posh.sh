@@ -1,1 +1,1 @@
-eval "$(oh-my-posh init bash)"
+eval "$(oh-my-posh init bash --config $HOME/.omp/oh-my-posh-theme.json)"
