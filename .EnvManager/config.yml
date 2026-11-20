@@ -24,3 +24,9 @@ tools:
   installCommand: 
   updateCommand: 
   removeCommand: 
+- name: oh-my-posh
+  packageManager: dnf
+  version: 
+  installCommand: 
+  updateCommand: 
+  removeCommand: 
