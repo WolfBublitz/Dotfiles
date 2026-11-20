@@ -30,3 +30,9 @@ tools:
   installCommand: 
   updateCommand: 
   removeCommand: 
+- name: lsd
+  packageManager: dnf
+  version: 
+  installCommand: 
+  updateCommand: 
+  removeCommand: 
